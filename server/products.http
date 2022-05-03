@@ -1,0 +1,53 @@
+### Buscar todos los productos
+
+GET http://localhost:8000/api/products
+
+### Buscar un solo producto
+
+GET http://localhost:8000/api/product/6238df04309ca04e444ec711
+
+### Eliminar un producto -ADMIN-
+
+DELETE http://localhost:8000/api/product/delete/6238df04309ca04e444ec716
+Content-Type: application/xml
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzhkZjA0MzA5Y2EwNGU0NDRlYzcwZSIsImlhdCI6MTY1MDMxMjc2MiwiZXhwIjoxNjUyOTA0NzYyfQ.odPyBqztF7f6O2EE_ZZniKyyAMx5X5ZliFNDzy0v49I
+
+### Crear un producto -ADMIN-
+
+POST http://localhost:8000/api/product/create
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNjJjODdkODNlMjc1NjA2MGQyZTE1MSIsImlhdCI6MTY1MDY0NDgwNCwiZXhwIjoxNjUzMjM2ODA0fQ.R49egGNHqNCJV6Cc3-7YIPMOmlBTxkG_eoJSJDZosFI
+
+
+
+### Actualziar un producto -ADMIN-
+
+PUT http://localhost:8000/api/product/update/6262e734e5a41c425dba3566
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNjJjODdkODNlMjc1NjA2MGQyZTE1MSIsImlhdCI6MTY1MDY0NDgwNCwiZXhwIjoxNjUzMjM2ODA0fQ.R49egGNHqNCJV6Cc3-7YIPMOmlBTxkG_eoJSJDZosFI
+
+
+{
+    "name": "Jordan Retro 4",
+    "price":"200",
+    "image": "/images/JordanRetro4.png",
+    "brand": "Nike",
+    "category": "Sneakers",
+    "countInStock": "2",
+    "description": "Nike 90s clasics shoes"
+}
+
+
+### Crear un review
+POST http://localhost:8000/api/product/6266f2594958aedc4c210331/review
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNjJjYjdjZjNhNTViZWRjOGE4ZWM5ZiIsImlhdCI6MTY1MDk5MTk4MywiZXhwIjoxNjUzNTgzOTgzfQ.-v3ZE86gwHGATa9j-0xldoQQNRvvHfcSuuBz2EYUhFc
+
+
+{
+    "rating":"4",
+    "comment":"Tardaron un poco en llegar y la caja se daño, pero me encantan!"
+}
+
+###Encontrar los productos mejor ranqueados 
+GET http://localhost:8000/api/products/top

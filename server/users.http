@@ -1,0 +1,84 @@
+### GET USERS -ADMIN-
+
+GET http://localhost:8000/api/users
+Content-Type: application/xml
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNjJjODdkODNlMjc1NjA2MGQyZTE1MSIsImlhdCI6MTY1MDY0NTAxNywiZXhwIjoxNjUzMjM3MDE3fQ.MC8kNf6_7EEaF3Xa_lxGkW2Q6Zgqu5rdXXHkX47u04M
+
+
+### GET SINGLE USER -ADMIN-
+
+GET http://localhost:8000/api/6262c87d83e2756060d2e151
+Content-Type: application/xml
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNjJjODdkODNlMjc1NjA2MGQyZTE1MSIsImlhdCI6MTY1MDk5MTQ0MywiZXhwIjoxNjUzNTgzNDQzfQ.Xmkz2crl1NkBUXJOu-eBWCOp6GMvlr20mGY5tzFXw8s
+
+
+### REGISTER
+POST http://localhost:8000/api/register
+Content-Type: application/json
+
+{
+  "name":"papo",
+  "email":"papo@example.com",
+  "password":"argentina4567"
+}
+
+
+
+### USER LOGIN
+POST http://localhost:8000/api/login
+Content-Type: application/json
+
+
+{
+  "email":"joacomaurtua@gmail.com",
+  "password":"joacotnt777"
+}
+
+###ADMIN LOGIN
+POST http://localhost:8000/api/login
+Content-Type: application/json
+
+
+{
+  "email":"admin@example.com",
+  "password":"123456"
+}
+
+
+
+###GET USER PROFILE
+GET http://localhost:8000/api/user/profile
+Content-Type: application/xml
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzhkZjA0MzA5Y2EwNGU0NDRlYzcwZSIsImlhdCI6MTY1MDMxMjk0NSwiZXhwIjoxNjUyOTA0OTQ1fQ.EmlOAE9wIW5hJf_-RyrLZ0AaP65qHnHFOm8s6GWOSYQ
+
+###PUT USER Profile
+
+PUT http://localhost:8000/api/updateProfile
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTdmMzZkYmIxMTA5ZDU1YmUyMWE1NCIsImlhdCI6MTY0MjI2Mjc5MiwiZXhwIjoxNjQ3NDQ2NzkyfQ.U7j8ksAr7laQy4ji8AUDw13slj5vO1VFSyom3e_qBoM
+
+{
+  "name":"Walls",
+  "email":"walls@example.com",
+  "password":"spain45678"
+}
+
+
+###DELETE SINGLE USER -ADMIN-
+
+DELETE http://localhost:8000/api/delete/625723d0b62377703581bcbb
+Content-Type: application/xml
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzhkZjA0MzA5Y2EwNGU0NDRlYzcwZSIsImlhdCI6MTY0OTg3NDQ3NiwiZXhwIjoxNjUyNDY2NDc2fQ.7gKatt7Zl6D71HjYr388i7yYPWakSIkN8_eVpeO91d4
+
+
+###UPDATE USER -ADMIN-
+PUT http://localhost:8000/api/update/625724ac66041040557f026a
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzhkZjA0MzA5Y2EwNGU0NDRlYzcwZSIsImlhdCI6MTY0OTg4OTgwNywiZXhwIjoxNjUyNDgxODA3fQ.B2EtRkff6KB295bliAKPNaazlczdkCJRnOI1dx3QzP4
+
+{
+  "_id": "625724ac66041040557f026a",
+  "name": "JoacoMaster",
+  "email": "joacomaurtua@gmail.com",
+  "isAdmin": false
+}
