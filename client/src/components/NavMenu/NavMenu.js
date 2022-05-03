@@ -2,6 +2,7 @@ import React from 'react';
 import { Button } from '@material-ui/core';
 import { Menu } from '@material-ui/core';
 import {MenuItem} from '@material-ui/core';
+import './NavMenu.scss';
 
 export default function BasicMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -15,8 +16,9 @@ export default function BasicMenu() {
 
 
   return (
-    <div>
+    <div className="navMenu-component">
       <Button
+        className="navButton"
         id="basic-button"
         aria-controls={open ? 'basic-menu' : undefined}
         aria-haspopup="true"
@@ -43,6 +45,7 @@ export default function BasicMenu() {
 
 
       <Button
+        className="navButton"
         id="basic-button"
         aria-controls={open ? 'basic-menu' : undefined}
         aria-haspopup="true"
@@ -68,6 +71,7 @@ export default function BasicMenu() {
       </Menu>
 
       <Button
+        className="navButton"
         id="basic-button"
         aria-controls={open ? 'basic-menu' : undefined}
         aria-haspopup="true"
@@ -93,6 +97,7 @@ export default function BasicMenu() {
       </Menu>
 
       <Button
+        className="navButton"
         id="basic-button"
         aria-controls={open3 ? 'basic-menu' : undefined}
         aria-haspopup="true"

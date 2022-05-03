@@ -9,7 +9,7 @@ import {useParams,Link} from 'react-router-dom';
 import Paginate from '../components/Paginate';
 import ProductCarousel from '../components/ProductCarousel';
 import Meta from '../components/Meta';
-import NavMenu from '../components/NavMenu';
+import NavMenu from '../components/NavMenu/NavMenu';
 
 //import axios from 'axios';
 
