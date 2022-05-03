@@ -23,6 +23,9 @@ import {
   PRODUCT_TOP_REQUEST,
   PRODUCT_TOP_SUCCESS,
   PRODUCT_TOP_FAIL,
+  PRODUCT_BRAND_REQUEST,
+  PRODUCT_BRAND_SUCCESS,
+  PRODUCT_BRAND_FAIL,
 } from '../constants/productConstants';
 
 //Funcion reducer que gestiona el estado(en este caso el array de productos)
@@ -151,6 +154,23 @@ export const productTopRatedReducer = (state = {products:[]}, action) => {
       return { loading: false, products:action.payload };
 
     case PRODUCT_TOP_FAIL:
+      return { loading: false, error: action.payload };
+
+    default:
+      return state;
+  }
+};
+
+
+export const productByBrandReducer = (state = {products:[]}, action) => {
+  switch (action.type) {
+    case PRODUCT_BRAND_REQUEST:
+      return { loading: true, products:[] };
+
+    case PRODUCT_BRAND_SUCCESS:
+      return { loading: false, products:action.payload };
+
+    case PRODUCT_BRAND_FAIL:
       return { loading: false, error: action.payload };
 
     default:

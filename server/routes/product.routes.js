@@ -32,6 +32,6 @@ router.post('/product/:id/review',protect,createReview);//crear un comentario
 
 router.get('/products/top', getTopProducts) //encontrar los productos mejor ranqueados
 
-router.get('/products/brand',getProductsByBrand);
+router.get('/products/brand',getProductsByBrand);//encontrar los productos por marca
 
 module.exports = router;
