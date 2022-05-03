@@ -51,6 +51,10 @@ const productSchema = new mongoose.Schema({
     required: [true,'Este campo es obligatorio']
   },
 
+  color:{
+    type: String, required: false
+  },
+
   description:{
     type: String,
     required: [true,'Este campo es obligatorio']

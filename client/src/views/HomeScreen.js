@@ -9,6 +9,7 @@ import {useParams,Link} from 'react-router-dom';
 import Paginate from '../components/Paginate';
 import ProductCarousel from '../components/ProductCarousel';
 import Meta from '../components/Meta';
+import NavMenu from '../components/NavMenu';
 
 //import axios from 'axios';
 
@@ -30,6 +31,7 @@ const Homescreen = () => {
   return (
     <>
       <Meta />
+      <NavMenu />
       {!keyword ? <ProductCarousel/> : <Link to='/' className='btn btn-light'>Regresar</Link>}
       <h1 style={{ margin: '2rem 0' }}>Últimos Productos</h1>
       {loading ? ( //Si la data esta cargando(loading:true en el reducer)
