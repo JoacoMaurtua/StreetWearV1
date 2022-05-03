@@ -1,8 +1,12 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Button } from '@material-ui/core';
 import { Menu } from '@material-ui/core';
 import {MenuItem} from '@material-ui/core';
 import './NavMenu.scss';
+import {listBrandProducts} from '../../actions/productActions'
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+
 
 export default function BasicMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -13,6 +17,29 @@ export default function BasicMenu() {
   const open = Boolean(anchorEl);
   const open2 = Boolean(anchorEl2);
   const open3 = Boolean(anchorEl3);
+
+  const dispatch = useDispatch();
+
+  const history = useHistory();
+
+  const productByBrand = useSelector(state => state.productByBrand)
+  const {loading, error, products} = productByBrand;
+
+  console.log(loading,error,products);
+
+  useEffect(() =>{
+    dispatch(listBrandProducts())
+  },[dispatch]);
+
+  const clickHandler = (e) => {
+    if (anchorEl) {
+      history.push(`/search/${anchorEl}`);
+    } else {
+      history.push('/');
+    }
+  };
+
+  console.log(clickHandler);
 
 
   return (
@@ -36,11 +63,11 @@ export default function BasicMenu() {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem onClick={()=>{setAnchorEl(null)}}>Adidas</MenuItem>
-        <MenuItem onClick={()=>{setAnchorEl(null)}}>Puma</MenuItem>
-        <MenuItem onClick={()=>{setAnchorEl(null)}}>Reebok</MenuItem>
-        <MenuItem onClick={()=>{setAnchorEl(null)}}>Nike</MenuItem>
-        <MenuItem onClick={()=>{setAnchorEl(null)}}>Jordan</MenuItem>
+        <MenuItem onClick={clickHandler}>Adidas</MenuItem>
+        <MenuItem onClick={clickHandler}>Puma</MenuItem>
+        <MenuItem onClick={clickHandler}>Reebok</MenuItem>
+        <MenuItem onClick={clickHandler}>Nike</MenuItem>
+        <MenuItem onClick={clickHandler}>Jordan</MenuItem>
       </Menu>
 
 
