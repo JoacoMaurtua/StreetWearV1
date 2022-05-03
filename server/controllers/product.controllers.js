@@ -19,6 +19,9 @@ const findProduct = asyncHandler(async (req, res) => {
       }
     : {}
 
+  
+  
+
   const count = await Product.countDocuments({ ...keyword })
   const products = await Product.find({ ...keyword })
     .limit(pageSize)
@@ -26,6 +29,27 @@ const findProduct = asyncHandler(async (req, res) => {
 
   res.json({ products, page, pages: Math.ceil(count / pageSize) })
 });
+
+
+//funcionalidad para la busqueda por campo en navMenu
+const getProductsByBrand = asyncHandler(async(req,res) => {
+  const pageSize = 8 
+  const page = Number(req.query.pageNumber) || 1
+  const brand = req.query.brand?
+  {
+    brand:{
+      $regex: req.query.brand, //para que no solo busque las palabras exactas, si no tambien por terminos
+      $options: 'i',
+    },
+  }:{}
+
+  const count = await Product.countDocuments({ ...brand })
+  const products = await Product.find({ ...brand })
+    .limit(pageSize)
+    .skip(pageSize * (page - 1))
+
+  res.json({ products, page, pages: Math.ceil(count / pageSize) });
+})
 
 
 //DEVOLVER UN SOLO PRODUCTO
@@ -172,7 +196,9 @@ const createReview = asyncHandler(async (req, res) => {
 const getTopProducts = asyncHandler(async(req,res) => {
   const products = await Product.find({}).sort({rating:-1}).limit(3) //-1 indica un orden decendente
   res.json(products);
-})
+});
+
+
 
 module.exports = {
   findProduct,
@@ -181,5 +207,6 @@ module.exports = {
   createProduct,
   updateProduct,
   createReview,
-  getTopProducts
+  getTopProducts,
+  getProductsByBrand
 };
