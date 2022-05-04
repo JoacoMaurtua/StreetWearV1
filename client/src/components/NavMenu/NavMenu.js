@@ -31,16 +31,17 @@ export default function BasicMenu() {
     
     setDataCategory(result);
 
-    /* if(dataCategory[0].brand === category){
-      history.push(`/search/${dataCategory[0].brand}`);
+   if(dataCategory[0].brand === category){ //(AQUI ESTA EL ERROR, NO RECONOCE BRAND)
+       history.push(`/search/${dataCategory[0].brand}`);
     }else{
       history.push('/')
-    }  */
+    } 
+
   }; //Ya me devuelve el array que quiero
 
-  useEffect(()=>{
+/*   useEffect(()=>{ //parece que useEffect evita que la data se cargue recien luego del primer click
     console.log('dataCategory',dataCategory);
-  },[dataCategory]);
+  },[dataCategory]);  */
 
   
   
@@ -67,11 +68,12 @@ export default function BasicMenu() {
           'aria-labelledby': 'basic-button',
         }}
       >
+        <MenuItem onClick={() => filterProductByCategory('Adidas')}>Adidas</MenuItem> {/* Aqui hacer la funcionalidad */}
         <MenuItem onClick={() => filterProductByCategory('Nike')}>Nike</MenuItem> {/* Aqui hacer la funcionalidad */}
-       {/*  <MenuItem onClick={clickHandler}>Puma</MenuItem>
-        <MenuItem onClick={clickHandler}>Reebok</MenuItem>
-        <MenuItem onClick={clickHandler}>Nike</MenuItem>
-        <MenuItem onClick={clickHandler}>Jordan</MenuItem> */}
+        <MenuItem onClick={() => filterProductByCategory('Puma')}>Puma</MenuItem>
+        <MenuItem onClick={() => filterProductByCategory('Reebok')}>Reebok</MenuItem>
+        <MenuItem onClick={() => filterProductByCategory('Nike')}>Nike</MenuItem>
+        <MenuItem onClick={() => filterProductByCategory('Jordan')}>Jordan</MenuItem>
       </Menu>
 
 
