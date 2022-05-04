@@ -1,18 +1,19 @@
-import React, {useEffect,useState} from 'react';
+import React, {/* useEffect, */useState} from 'react';
 import { Button } from '@material-ui/core';
 import { Menu } from '@material-ui/core';
 import {MenuItem} from '@material-ui/core';
 import './NavMenu.scss';
-import {listBrandProducts} from '../../actions/productActions'
+//import {listProducts} from '../../actions/productActions'
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-
+import { useHistory, useParams } from 'react-router-dom';
 
 export default function BasicMenu() {
 
-  const dispatch = useDispatch();
+  //const dispatch = useDispatch();
 
   const history = useHistory();
+
+  //const {pageNumber} = useParams() || 1; 
 
   const [anchorEl, setAnchorEl] = useState(null);
   const [anchorEl2, setAnchorEl2] = useState(null);
@@ -22,29 +23,36 @@ export default function BasicMenu() {
   const open2 = Boolean(anchorEl2);
   const open3 = Boolean(anchorEl3);
 
-  const [brand,setBrand] = useState('')
+  const productList = useSelector((state) => state.productList);
+  const { products } = productList;
 
-  const productByBrand = useSelector(state => state.productByBrand)
-  const {loading, error, products} = productByBrand;
+  const [dataCategory,setDataCategory] = useState(products);
 
-  console.log(loading,error,products);
+  /* useEffect(() =>{
+    dispatch(listProducts('',pageNumber))
+  },[dispatch,pageNumber,dataCategory,products]); */
 
-  useEffect(() =>{
-    dispatch(listBrandProducts())
-  },[dispatch]);
-
-  const clickHandler = (e) => {
-    setBrand('nike')
-    if (brand) {
-      history.push(`/search/${brand}`);
-    } else {
-      history.push('/');
+  const filterProductByCategory =  (category) =>{
+    const result = products.filter((product)=>{
+      return product.brand === category
+    });
+    setDataCategory(result); //arreglo con las marcas que coinciden
+    if(result !== null || result !== undefined){
+      setDataCategory(result)
     }
-  };
+     //PROBLEMA: No me devuelve lo que quiero al primer click
 
-  console.log(clickHandler);
+   if(dataCategory[0].brand === category){
+      history.push(`/search/${dataCategory[0].brand}`);
+    }else{
+      history.push('/')
+    } 
+    
+  }; //Ya me devuelve el array que quiero
 
+  console.log('dataCategory',dataCategory[0]);
 
+  
   return (
     <div className="navMenu-component">
       <Button
@@ -66,11 +74,11 @@ export default function BasicMenu() {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem onClick={clickHandler}>Adidas</MenuItem> {/* Aqui hacer la funcionalidad */}
-        <MenuItem onClick={clickHandler}>Puma</MenuItem>
+        <MenuItem onClick={() => filterProductByCategory('Nike')}>Nike</MenuItem> {/* Aqui hacer la funcionalidad */}
+       {/*  <MenuItem onClick={clickHandler}>Puma</MenuItem>
         <MenuItem onClick={clickHandler}>Reebok</MenuItem>
         <MenuItem onClick={clickHandler}>Nike</MenuItem>
-        <MenuItem onClick={clickHandler}>Jordan</MenuItem>
+        <MenuItem onClick={clickHandler}>Jordan</MenuItem> */}
       </Menu>
 
 
