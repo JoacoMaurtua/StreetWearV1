@@ -1,19 +1,14 @@
-import React, {/* useEffect, */useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import { Button } from '@material-ui/core';
 import { Menu } from '@material-ui/core';
 import {MenuItem} from '@material-ui/core';
 import './NavMenu.scss';
-//import {listProducts} from '../../actions/productActions'
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 export default function BasicMenu() {
 
-  //const dispatch = useDispatch();
-
   const history = useHistory();
-
-  //const {pageNumber} = useParams() || 1; 
 
   const [anchorEl, setAnchorEl] = useState(null);
   const [anchorEl2, setAnchorEl2] = useState(null);
@@ -28,29 +23,27 @@ export default function BasicMenu() {
 
   const [dataCategory,setDataCategory] = useState(products);
 
-  /* useEffect(() =>{
-    dispatch(listProducts('',pageNumber))
-  },[dispatch,pageNumber,dataCategory,products]); */
 
-  const filterProductByCategory =  (category) =>{
+  const filterProductByCategory =  (category) =>{ //PROBLEMA: No me devuelve lo que quiero al primer click
     const result = products.filter((product)=>{
       return product.brand === category
     });
-    setDataCategory(result); //arreglo con las marcas que coinciden
-    if(result !== null || result !== undefined){
-      setDataCategory(result)
-    }
-     //PROBLEMA: No me devuelve lo que quiero al primer click
+    
+    setDataCategory(result);
 
-   if(dataCategory[0].brand === category){
+    /* if(dataCategory[0].brand === category){
       history.push(`/search/${dataCategory[0].brand}`);
     }else{
       history.push('/')
-    } 
-    
+    }  */
   }; //Ya me devuelve el array que quiero
 
-  console.log('dataCategory',dataCategory[0]);
+  useEffect(()=>{
+    console.log('dataCategory',dataCategory);
+  },[dataCategory]);
+
+  
+  
 
   
   return (
