@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect,useState} from 'react';
 import { Button } from '@material-ui/core';
 import { Menu } from '@material-ui/core';
 import {MenuItem} from '@material-ui/core';
@@ -9,18 +9,20 @@ import { useHistory } from 'react-router-dom';
 
 
 export default function BasicMenu() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [anchorEl2, setAnchorEl2] = React.useState(null);
-  const [anchorEl3, setAnchorEl3] = React.useState(null);
-  
-
-  const open = Boolean(anchorEl);
-  const open2 = Boolean(anchorEl2);
-  const open3 = Boolean(anchorEl3);
 
   const dispatch = useDispatch();
 
   const history = useHistory();
+
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [anchorEl2, setAnchorEl2] = useState(null);
+  const [anchorEl3, setAnchorEl3] = useState(null);
+  
+  const open = Boolean(anchorEl);
+  const open2 = Boolean(anchorEl2);
+  const open3 = Boolean(anchorEl3);
+
+  const [brand,setBrand] = useState('')
 
   const productByBrand = useSelector(state => state.productByBrand)
   const {loading, error, products} = productByBrand;
@@ -32,8 +34,9 @@ export default function BasicMenu() {
   },[dispatch]);
 
   const clickHandler = (e) => {
-    if (anchorEl) {
-      history.push(`/search/${anchorEl}`);
+    setBrand('nike')
+    if (brand) {
+      history.push(`/search/${brand}`);
     } else {
       history.push('/');
     }
@@ -63,7 +66,7 @@ export default function BasicMenu() {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem onClick={clickHandler}>Adidas</MenuItem>
+        <MenuItem onClick={clickHandler}>Adidas</MenuItem> {/* Aqui hacer la funcionalidad */}
         <MenuItem onClick={clickHandler}>Puma</MenuItem>
         <MenuItem onClick={clickHandler}>Reebok</MenuItem>
         <MenuItem onClick={clickHandler}>Nike</MenuItem>
