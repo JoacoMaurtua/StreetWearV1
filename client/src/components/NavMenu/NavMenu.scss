@@ -1,6 +1,5 @@
 .navBar{
   height: 8vh;
-  margin-top:.5rem;
   display: flex;
   justify-content:center;
   align-items:center;
@@ -12,22 +11,22 @@
     text-align:center;
     width: 70vw;
     justify-content: center;
-    margin-right: 2rem;
     margin-bottom: 0.5rem;
+    margin-left: 2.1rem;
     
     .nav-item{
       display: flex;
       align-items: center;
       font-weight: bold;
-      a{
-        text-decoration: none;
-        font-size: 1.1rem;
-        margin-right: 2.5rem;
-        color: #737f96;
-        &:hover{
-          color: #282c34;
-        }
-      }
+      height: 10vh;
+      font-size: 1.1rem;
+      margin-right: 5.5rem;
+      color: #737f96;
+      cursor: pointer;
+     
+      &:hover{
+        color: #282c34;
+      } 
     }
   }
 }
