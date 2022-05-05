@@ -31,26 +31,6 @@ const findProduct = asyncHandler(async (req, res) => {
 });
 
 
-//funcionalidad para la busqueda por campo en navMenu
-const getProductsByBrand = asyncHandler(async(req,res) => {
-  const pageSize = 8 
-  const page = Number(req.query.pageNumber) || 1
-  const brand = req.query.brand?
-  {
-    brand:{
-      $regex: req.query.brand, //para que no solo busque las palabras exactas, si no tambien por terminos
-      $options: 'i',
-    },
-  }:{}
-
-  const count = await Product.countDocuments({ ...brand })
-  const products = await Product.find({ ...brand })
-    .limit(pageSize)
-    .skip(pageSize * (page - 1))
-
-  res.json({ products, page, pages: Math.ceil(count / pageSize) });
-})
-
 
 //DEVOLVER UN SOLO PRODUCTO
 const findSingleProduct = (req, res) => {
@@ -208,5 +188,4 @@ module.exports = {
   updateProduct,
   createReview,
   getTopProducts,
-  getProductsByBrand
 };

@@ -8,7 +8,6 @@ const {
   updateProduct,
   createReview,
   getTopProducts,
-  getProductsByBrand,
 } = require('../controllers/product.controllers');
 
 const { protect, admin } = require('../config/authMiddleware.config');
@@ -31,7 +30,5 @@ router.put('/product/update/:id',protect,admin,updateProduct); //actualizar un p
 router.post('/product/:id/review',protect,createReview);//crear un comentario
 
 router.get('/products/top', getTopProducts) //encontrar los productos mejor ranqueados
-
-router.get('/products/brand',getProductsByBrand);//encontrar los productos por marca
 
 module.exports = router;
