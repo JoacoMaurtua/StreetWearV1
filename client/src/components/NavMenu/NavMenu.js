@@ -2,6 +2,8 @@ import React from 'react';
 import './NavMenu.scss';
 import { Link } from 'react-router-dom';
 import { navItems } from './navItems';
+import { Button } from '@material-ui/core';
+
 
 const NavMenu = () => {
   return (
@@ -11,7 +13,7 @@ const NavMenu = () => {
           {navItems.map((item) => {
             return (
               <li key={item.id} className={item.cName}>
-                {item.title}
+                <Link>{item.title}</Link>
               </li>
             );
           })}

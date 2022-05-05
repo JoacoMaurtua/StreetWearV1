@@ -4,15 +4,31 @@
   display: flex;
   justify-content:center;
   align-items:center;
+  margin-top:1rem;
 
-  .navBar-option{
-    color: #282c34;
-    text-decoration: none;
-    font-size: 2rem;
-    display: flex;
-    align-items:center;
-    justify-content:space-between;
-    width: 8rem;
+  .navBar-navItems{
+    display:flex;
+    list-style: none;
+    text-align:center;
+    width: 70vw;
+    justify-content: center;
+    margin-right: 2rem;
+    margin-bottom: 0.5rem;
+    
+    .nav-item{
+      display: flex;
+      align-items: center;
+      font-weight: bold;
+      a{
+        text-decoration: none;
+        font-size: 1.1rem;
+        margin-right: 2.5rem;
+        color: #737f96;
+        &:hover{
+          color: #282c34;
+        }
+      }
+    }
   }
 }
 
