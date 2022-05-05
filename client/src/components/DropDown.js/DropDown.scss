@@ -6,11 +6,12 @@
   top: 180px;
   overflow: hidden;
   z-index: 100;
-  margin-right: 30rem;
-
+  margin-left: -2rem;
+ 
   li{
     background: #282c34;
     cursor:pointer;
+    padding-left: 1rem;
 
     .submenu-item{
       display:block;
@@ -19,10 +20,9 @@
       text-decoration: none;
       color: white;
       padding: 10px;
-
-      &:hover{
-        background: #545d6e
-      }
+    }
+    &:hover{
+      background: #545d6e
     }
   }
 };
