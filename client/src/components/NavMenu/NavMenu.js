@@ -6,7 +6,7 @@ import DropDown from '../DropDown.js/DropDown';
 
 
 const NavMenu = () => {
-  const [dropDown,setDropDown] = useState(true);
+  const [dropDown,setDropDown] = useState(false);
 
   return (
     <>
