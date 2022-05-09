@@ -185,6 +185,20 @@ const ProductEditScreen = () => {
               ></Form.Control>
             </Form.Group>
 
+            <Form.Group controlId="sex">
+              <Form.Label>Género: </Form.Label>
+              <Form.Select
+                 style={{ marginBottom: '1rem' }}
+                 type="text"
+                 value={gender}
+                 onChange={(e) => setGender(e.target.value)}
+              >
+                <option value={'Hombre'}>Hombre</option>
+                <option value={'Mujer'}>Mujer</option>
+                <option value={'Unisex'}>Unisex</option>
+              </Form.Select>
+            </Form.Group>
+
             <Form.Group controlId="description">
               <Form.Label>Descripción</Form.Label>
               <Form.Control

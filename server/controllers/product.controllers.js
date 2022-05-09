@@ -2,34 +2,30 @@ const Product = require('../models/product.models');
 
 const asyncHandler = require('express-async-handler');
 
-
 //DEVOLVER TODA LA LISTA DE PRODUCTOS
 const findProduct = asyncHandler(async (req, res) => {
   //funcionalidad para la paginacion tomando en cuenta el backend
-  const pageSize = 8 //numero de productos maximo por pagina
-  const page = Number(req.query.pageNumber) || 1
+  const pageSize = 8; //numero de productos maximo por pagina
+  const page = Number(req.query.pageNumber) || 1;
 
   //funcionalidad para la busqueda
   const keyword = req.query.keyword
     ? {
-        name: {
+        brand: {
+          //si se refiere a la propiedad del modelo
           $regex: req.query.keyword, //para que no solo busque las palabras exactas, si no tambien por terminos
           $options: 'i',
         },
-      }
-    : {}
+      } 
+    : {};
 
-  
-  
-
-  const count = await Product.countDocuments({ ...keyword })
+  const count = await Product.countDocuments({ ...keyword });
   const products = await Product.find({ ...keyword })
     .limit(pageSize)
-    .skip(pageSize * (page - 1))
+    .skip(pageSize * (page - 1));
 
-  res.json({ products, page, pages: Math.ceil(count / pageSize) })
+  res.json({ products, page, pages: Math.ceil(count / pageSize) });
 });
-
 
 //DEVOLVER UN SOLO PRODUCTO
 const findSingleProduct = (req, res) => {
@@ -63,7 +59,8 @@ const deleteProduct = asyncHandler(async (req, res) => {
 const createProduct = asyncHandler(async (req, res) => {
   //(CAMBIAR ESTE CONTROLLER)
   //Prueba
-  const product = new Product({ //reeemplaza por el de CD
+  const product = new Product({
+    //reeemplaza por el de CD
     name: 'Sample name',
     price: 0,
     user: req.user._id,
@@ -92,8 +89,16 @@ Product.create(req.body)
 //Actualizar un producto -ADMIN-
 const updateProduct = asyncHandler(async (req, res) => {
   //(MEJORAR ESTE CONTROLLER)
-  const { name, price, description, image, brand, gender, category, countInStock } =
-    req.body;
+  const {
+    name,
+    price,
+    description,
+    image,
+    brand,
+    gender,
+    category,
+    countInStock,
+  } = req.body;
 
   const product = await Product.findById(req.params.id);
 
@@ -124,7 +129,7 @@ const createReview = asyncHandler(async (req, res) => {
   if (product) {
     const alreadyReviewed = product.reviews.find(
       (r) => r.user.toString() === req.user._id.toString()
-    )
+    );
 
     if (alreadyReviewed) {
       res.status(400);
@@ -171,14 +176,11 @@ const createReview = asyncHandler(async (req, res) => {
   }
 });
 
-
 //DEVOLVER LOS PRODUCTOS MAS RANKEADOS PARA EL CARRUSEL
-const getTopProducts = asyncHandler(async(req,res) => {
-  const products = await Product.find({}).sort({rating:-1}).limit(3) //-1 indica un orden decendente
+const getTopProducts = asyncHandler(async (req, res) => {
+  const products = await Product.find({}).sort({ rating: -1 }).limit(3); //-1 indica un orden decendente
   res.json(products);
 });
-
-
 
 module.exports = {
   findProduct,
