@@ -23,7 +23,6 @@ const ProductEditScreen = () => {
   const [category, setCategory] = useState('');
   const [countInStock, setCountInStock] = useState(0);
   const [description, setDescription] = useState('');
-  const [gender,setGender] = useState('');
 
   const [uploading, setUploading] = useState(false);
 
@@ -49,7 +48,6 @@ const ProductEditScreen = () => {
         setPrice(product.price);
         setImage(product.image);
         setBrand(product.brand);
-        setGender(product.gender)
         setCategory(product.category);
         setCountInStock(product.countInStock);
         setDescription(product.description);
@@ -67,7 +65,6 @@ const ProductEditScreen = () => {
         image,
         brand,
         category,
-        gender,
         description,
         countInStock,
       })
@@ -113,7 +110,7 @@ const ProductEditScreen = () => {
         ) : (
           <Form onSubmit={submitHandler}>
             <Form.Group controlId="name">
-              <Form.Label>Nombre: </Form.Label>
+              <Form.Label>Nombre</Form.Label>
               <Form.Control
                 style={{ marginBottom: '1rem' }}
                 type="name"
@@ -124,7 +121,7 @@ const ProductEditScreen = () => {
             </Form.Group>
 
             <Form.Group controlId="price">
-              <Form.Label>Precio: </Form.Label>
+              <Form.Label>Precio</Form.Label>
               <Form.Control
                 style={{ marginBottom: '1rem' }}
                 type="number"
@@ -135,7 +132,7 @@ const ProductEditScreen = () => {
             </Form.Group>
 
             <Form.Group controlId="image">
-              <Form.Label>Imagen: </Form.Label>
+              <Form.Label>Imagen</Form.Label>
               <Form.Control
                 style={{ marginBottom: '1rem' }}
                 type="text"
@@ -156,7 +153,7 @@ const ProductEditScreen = () => {
             </Form.Group>
 
             <Form.Group controlId="brand">
-              <Form.Label>Marca: </Form.Label>
+              <Form.Label>Marca</Form.Label>
               <Form.Control
                 style={{ marginBottom: '1rem' }}
                 type="text"
@@ -167,7 +164,7 @@ const ProductEditScreen = () => {
             </Form.Group>
 
             <Form.Group controlId="countInStock">
-              <Form.Label>Cantidad en Stock: </Form.Label>
+              <Form.Label>Cantidad en Stock</Form.Label>
               <Form.Control
                 style={{ marginBottom: '1rem' }}
                 type="number"
@@ -178,41 +175,19 @@ const ProductEditScreen = () => {
             </Form.Group>
 
             <Form.Group controlId="category">
-            <Form.Label>Categoría: </Form.Label>
-              <Form.Select
-                 style={{ marginBottom: '1rem' }}
-                 type="text"
-                 value={category}
-                 onChange={(e) => setCategory(e.target.value)}
-              >
-                <option value={'Sneakers'}>Sneakers</option>
-                <option value={'Poleras&Casacas'}>Ploeras y Casacas</option>
-                <option value={'Polos'}>Polos</option>
-                <option value={'Shorts'}>Shorts</option>
-                <option value={'Pants&Joggers'}>Pants y Joggers</option>
-                <option value={'Accesorios'}>Accesorios</option>
-
-              </Form.Select>
-            </Form.Group>
-
-            <Form.Group controlId="sex">
-              <Form.Label>Género: </Form.Label>
-              <Form.Select
-                 style={{ marginBottom: '1rem' }}
-                 type="text"
-                 value={gender}
-                 onChange={(e) => setGender(e.target.value)}
-              >
-                <option value={'Hombre'}>Hombre</option>
-                <option value={'Mujer'}>Mujer</option>
-                <option value={'Unisex'}>Unisex</option>
-              </Form.Select>
+              <Form.Label>Categoría</Form.Label>
+              <Form.Control
+                style={{ marginBottom: '1rem' }}
+                type="text"
+                placeholder="Ingrese una categoría"
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+              ></Form.Control>
             </Form.Group>
 
             <Form.Group controlId="description">
-              <Form.Label>Descripción: </Form.Label>
+              <Form.Label>Descripción</Form.Label>
               <Form.Control
-                as='textarea'
                 style={{ marginBottom: '1rem' }}
                 type="text"
                 placeholder="Ingrese una descripción"
@@ -222,7 +197,7 @@ const ProductEditScreen = () => {
             </Form.Group>
 
             <Button type="submit" variant="primary">
-              Aceptar
+              Continuar
             </Button>
           </Form>
         )}

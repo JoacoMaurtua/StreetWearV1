@@ -121,7 +121,7 @@ const Productscreen = () => {
                     <Row>
                       <Col>Estado:</Col>
                       <Col>
-                        {product.countInStock > 0 ? 'En Stock' : 'Fuera de Stock'}
+                        {product.countInStock > 0 ? 'In Stock' : 'Out of Stock'}
                       </Col>
                     </Row>
                   </ListGroup.Item>

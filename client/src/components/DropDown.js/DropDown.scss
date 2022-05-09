@@ -1,5 +1,5 @@
 .categorys-submenu{
-  width: 11rem;
+  width: 12rem;
   position: absolute;
   list-style: none;
   text-align: start;
@@ -11,7 +11,7 @@
   li{
     background: #282c34;
     cursor:pointer;
-    padding-left: .5rem;
+    padding-left: 1rem;
 
     .submenu-item{
       display:block;
@@ -25,7 +25,6 @@
       background: #545d6e
     }
   }
-
 };
 
 .categorys-submenu.clicked{

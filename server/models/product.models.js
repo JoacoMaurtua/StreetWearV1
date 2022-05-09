@@ -33,15 +33,13 @@ const productSchema = new mongoose.Schema({
     required: [true,'Este campo es obligatorio']
   },
 
-  gender:{
-    type: String,
-    required: [true,'Este campo es obligatorio']
+  sex:{
+    type: String, required: false
   },
 
-  /* size:{
-    type: Array, 
-    required: false
-  },  */
+  size:{
+    type: String, required: false
+  },
 
   brand:{
     type: String,
@@ -53,9 +51,9 @@ const productSchema = new mongoose.Schema({
     required: [true,'Este campo es obligatorio']
   },
 
-  /* color:{
+  color:{
     type: String, required: false
-  }, */
+  },
 
   description:{
     type: String,

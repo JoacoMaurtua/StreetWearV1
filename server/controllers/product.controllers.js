@@ -26,6 +26,8 @@ const findProduct = asyncHandler(async (req, res) => {
   res.json({ products, page, pages: Math.ceil(count / pageSize) });
 });
 
+
+
 //DEVOLVER UN SOLO PRODUCTO
 const findSingleProduct = (req, res) => {
   Product.findOne({ _id: req.params.id })
@@ -56,14 +58,15 @@ const deleteProduct = asyncHandler(async (req, res) => {
 
 //Crear un producto -ADMIN-
 const createProduct = asyncHandler(async (req, res) => {
+  //(CAMBIAR ESTE CONTROLLER)
+  //Prueba
   const product = new Product({
-    name: 'Nuevo Producto',
+    name: 'Sample name',
     price: 0,
     user: req.user._id,
     image: '/images/sample.jpg',
-    brand: 'Brand',
-    category: 'Sneakers',
-    gender: 'Hombre',
+    brand: 'Sample brand',
+    category: 'Sample category',
     countInStock: 0,
     numReviews: 0,
     description: 'Descripcion',
@@ -76,16 +79,9 @@ const createProduct = asyncHandler(async (req, res) => {
 //Actualizar un producto -ADMIN-
 const updateProduct = asyncHandler(async (req, res) => {
   //(MEJORAR ESTE CONTROLLER)
-  const {
-    name,
-    price,
-    description,
-    image,
-    brand,
-    gender,
-    category,
-    countInStock,
-  } = req.body;
+  const { name, price, description, image, brand, category, countInStock } =
+    req.body;
+
   const product = await Product.findById(req.params.id);
   if (product) {
     product.name = name;
@@ -93,7 +89,6 @@ const updateProduct = asyncHandler(async (req, res) => {
     product.description = description;
     product.image = image;
     product.brand = brand;
-    product.gender = gender;
     product.category = category;
     product.countInStock = countInStock;
 
