@@ -21,6 +21,7 @@ const ProductEditScreen = () => {
   const [image, setImage] = useState('');
   const [brand, setBrand] = useState('');
   const [category, setCategory] = useState('');
+  const [gender, setGender] = useState('');
   const [countInStock, setCountInStock] = useState(0);
   const [description, setDescription] = useState('');
 
@@ -49,6 +50,7 @@ const ProductEditScreen = () => {
         setImage(product.image);
         setBrand(product.brand);
         setCategory(product.category);
+        setGender(product.gender);
         setCountInStock(product.countInStock);
         setDescription(product.description);
       }
@@ -175,7 +177,7 @@ const ProductEditScreen = () => {
             </Form.Group>
 
             <Form.Group controlId="category">
-              <Form.Label>Categoría</Form.Label>
+              <Form.Label>Categoría: </Form.Label>
               <Form.Control
                 style={{ marginBottom: '1rem' }}
                 type="text"

@@ -108,6 +108,7 @@ const updateProduct = asyncHandler(async (req, res) => {
     product.description = description;
     product.image = image;
     product.brand = brand;
+    product.gender = gender;
     product.category = category;
     product.countInStock = countInStock;
 
