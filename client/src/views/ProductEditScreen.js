@@ -67,6 +67,7 @@ const ProductEditScreen = () => {
         image,
         brand,
         category,
+        gender,
         description,
         countInStock,
       })
@@ -178,13 +179,20 @@ const ProductEditScreen = () => {
 
             <Form.Group controlId="category">
               <Form.Label>Categoría: </Form.Label>
-              <Form.Control
-                style={{ marginBottom: '1rem' }}
-                type="text"
-                placeholder="Ingrese una categoría"
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
-              ></Form.Control>
+              <Form.Select
+                 style={{ marginBottom: '1rem' }}
+                 type="text"
+                 value={category}
+                 onChange={(e) => setCategory(e.target.value)}
+              >
+                <option value={'Sneakers'}>Sneakers</option>
+                <option value={'Poleras&Casacas'}>Ploeras y Casacas</option>
+                <option value={'Polos'}>Polos</option>
+                <option value={'Shorts'}>Shorts</option>
+                <option value={'Pants&Joggers'}>Pants y Joggers</option>
+                <option value={'Accesorios'}>Accesorios</option>
+
+              </Form.Select>
             </Form.Group>
 
             <Form.Group controlId="sex">
