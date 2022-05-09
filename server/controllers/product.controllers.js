@@ -2,11 +2,12 @@ const Product = require('../models/product.models');
 
 const asyncHandler = require('express-async-handler');
 
+
 //DEVOLVER TODA LA LISTA DE PRODUCTOS
 const findProduct = asyncHandler(async (req, res) => {
   //funcionalidad para la paginacion tomando en cuenta el backend
-  const pageSize = 8; //numero de productos maximo por pagina
-  const page = Number(req.query.pageNumber) || 1;
+  const pageSize = 8 //numero de productos maximo por pagina
+  const page = Number(req.query.pageNumber) || 1
 
   //funcionalidad para la busqueda
   const keyword = req.query.keyword
@@ -16,16 +17,18 @@ const findProduct = asyncHandler(async (req, res) => {
           $options: 'i',
         },
       }
-    : {};
+    : {}
 
-  const count = await Product.countDocuments({ ...keyword });
+  
+  
+
+  const count = await Product.countDocuments({ ...keyword })
   const products = await Product.find({ ...keyword })
     .limit(pageSize)
-    .skip(pageSize * (page - 1));
+    .skip(pageSize * (page - 1))
 
-  res.json({ products, page, pages: Math.ceil(count / pageSize) });
+  res.json({ products, page, pages: Math.ceil(count / pageSize) })
 });
-
 
 
 //DEVOLVER UN SOLO PRODUCTO
@@ -49,10 +52,10 @@ const deleteProduct = asyncHandler(async (req, res) => {
 
   if (product) {
     await product.remove();
-    res.json({ message: 'Product eliminado' });
+    res.json({ message: 'Product removed' });
   } else {
     res.status(404);
-    throw new Error('Producto no encontrado');
+    throw new Error('Product not found');
   }
 });
 
@@ -60,29 +63,40 @@ const deleteProduct = asyncHandler(async (req, res) => {
 const createProduct = asyncHandler(async (req, res) => {
   //(CAMBIAR ESTE CONTROLLER)
   //Prueba
-  const product = new Product({
+  const product = new Product({ //reeemplaza por el de CD
     name: 'Sample name',
     price: 0,
     user: req.user._id,
     image: '/images/sample.jpg',
     brand: 'Sample brand',
+    gender: 'Hombre',
     category: 'Sample category',
     countInStock: 0,
     numReviews: 0,
-    description: 'Descripcion',
+    description: 'Sample description',
   });
-
   const createdProduct = await product.save();
   res.status(201).json(createdProduct);
 });
 
+//VERISON ALTERNATIVA:
+/* const createProduct = async(req,res) =>{
+Product.create(req.body)
+    .then(results => res.json({data:results}))
+    .catch(error=>{
+      res.json({error:error, message:'Could not create a task'})
+      res.sendStatus(500);
+    })
+}; */
+
 //Actualizar un producto -ADMIN-
 const updateProduct = asyncHandler(async (req, res) => {
   //(MEJORAR ESTE CONTROLLER)
-  const { name, price, description, image, brand, category, countInStock } =
+  const { name, price, description, image, brand, gender, category, countInStock } =
     req.body;
 
   const product = await Product.findById(req.params.id);
+
   if (product) {
     product.name = name;
     product.price = price;
@@ -96,10 +110,9 @@ const updateProduct = asyncHandler(async (req, res) => {
     res.json(updatedProduct);
   } else {
     res.status(404);
-    throw new Error('Producto no encontrado');
+    throw new Error('Product not found');
   }
 });
-
 
 //CREAR UN NUEVO REVIEW
 const createReview = asyncHandler(async (req, res) => {
@@ -111,7 +124,7 @@ const createReview = asyncHandler(async (req, res) => {
   if (product) {
     const alreadyReviewed = product.reviews.find(
       (r) => r.user.toString() === req.user._id.toString()
-    );
+    )
 
     if (alreadyReviewed) {
       res.status(400);
@@ -158,11 +171,14 @@ const createReview = asyncHandler(async (req, res) => {
   }
 });
 
+
 //DEVOLVER LOS PRODUCTOS MAS RANKEADOS PARA EL CARRUSEL
-const getTopProducts = asyncHandler(async (req, res) => {
-  const products = await Product.find({}).sort({ rating: -1 }).limit(3); //-1 indica un orden decendente
+const getTopProducts = asyncHandler(async(req,res) => {
+  const products = await Product.find({}).sort({rating:-1}).limit(3) //-1 indica un orden decendente
   res.json(products);
 });
+
+
 
 module.exports = {
   findProduct,
