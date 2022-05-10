@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 
 
 const DropDown = ({propDropdown}) => {
+  
   const [dropDown, setDropDown] = useState(false);
 
- 
   return (
     <>
       <ul className= {dropDown ? "categorys-submenu clicked" : "categorys-submenu"} onClick={() => setDropDown(!dropDown)}>

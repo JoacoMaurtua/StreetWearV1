@@ -9,8 +9,7 @@ const SearchBox = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if (keyword.trim()) {
-      //eliminar espacios en blanco
+    if (keyword.trim()) {//eliminar espacios en blanco
       history.push(`/search/${keyword}`);
     } else {
       history.push('/');
