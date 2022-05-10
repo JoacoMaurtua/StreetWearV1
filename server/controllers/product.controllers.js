@@ -10,17 +10,38 @@ const findProduct = asyncHandler(async (req, res) => {
 
   //funcionalidad para la busqueda
   const keyword = req.query.keyword
-    ? {
-        brand:{ //como hacer dinamico este key para poder filtrar por varios campos
-          $regex: req.query.keyword, //para que no solo busque las palabras exactas, si no tambien por terminos
-          $options: 'i', //criterio para que ignore si esta en mayusculas o minusculas
-        }
-      } 
-    : {};
+  ? {
+      $or: [ 
+        {
+          name: {
+            $regex: req.query.keyword,
+            $options: 'i',
+          },
+        },
+        {
+          brand: {
+            $regex: req.query.keyword,
+            $options: 'i',
+          },
+        },
+        {
+          category: {
+            $regex: req.query.keyword,
+            $options: 'i',
+          },
+        },
+        {
+          gender: {
+            $regex: req.query.keyword,
+            $options: 'i',
+          },
+        },
+      ],
+    }
+  : {}
 
-    
-  const count = await Product.countDocuments({ ...keyword});
-  const products = await Product.find({ ...keyword})
+  const count = await Product.countDocuments({ ...keyword });
+  const products = await Product.find({ ...keyword })
     .limit(pageSize)
     .skip(pageSize * (page - 1));
 
