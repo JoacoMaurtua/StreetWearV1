@@ -1,3 +1,4 @@
+//ELEMENTOS DEL NAV
 export const navItems = [
   {
     id: 1,
@@ -21,6 +22,7 @@ export const navItems = [
   },
 ];
 
+//MARCAS
 export const brandsDropdown = [
   {
     id: 1,
@@ -85,46 +87,89 @@ export const brandsDropdown = [
 ];
 
 
-export const categorysDropdown = [
+//CATEGORIAS PARA HOMBRE
+export const categorysManDropdown = [
   {
     id: 1,
     title: 'Sneakers',
-    path: `/search/Sneakers`,
+    path: `/search/Hombre/Sneakers`,
     cName: 'submenu-item',
   },
   {
     id: 2,
     title: 'Poleras & Casacas',
-    path: `/search/Poleras&Casacas`,
+    path: `/search/Hombre/Poleras&Casacas`,
     cName: 'submenu-item',
   },
   {
     id: 3,
     title: 'Polos',
-    path: `/search/Polos`,
+    path: `/search/Hombre/Polos`,
     cName: 'submenu-item',
   },
   {
     id: 4,
     title: 'Shorts',
-    path: `/search/Shorts`,
+    path: `/search/Hombre/Shorts`,
     cName: 'submenu-item',
   },
   {
     id: 5,
     title: 'Pants & Joggers',
-    path: `/search/Pants&Joggers`,
+    path: `/search/Hombre/Pants&Joggers`,
     cName: 'submenu-item',
   },
   {
     id: 6,
     title: 'Accesorios',
-    path: `/search/Accesorios`,
+    path: `/search/Hombre/Accesorios`,
     cName: 'submenu-item',
   }
 ];
 
 
+//CATEGORIAS PARA MUJER
+export const categorysWomanDropdown = [
+  {
+    id: 1,
+    title: 'Sneakers',
+    path: `/search/Mujer/Sneakers`,
+    cName: 'submenu-item',
+  },
+  {
+    id: 2,
+    title: 'Poleras & Casacas',
+    path: `/search/Mujer/Poleras&Casacas`,
+    cName: 'submenu-item',
+  },
+  {
+    id: 3,
+    title: 'Polos',
+    path: `/search/Mujer/Polos`,
+    cName: 'submenu-item',
+  },
+  {
+    id: 4,
+    title: 'Shorts',
+    path: `/search/Mujer/Shorts`,
+    cName: 'submenu-item',
+  },
+  {
+    id: 5,
+    title: 'Pants & Joggers',
+    path: `/search/Mujer/Pants&Joggers`,
+    cName: 'submenu-item',
+  },
+  {
+    id: 6,
+    title: 'Accesorios',
+    path: `/search/Mujer/Accesorios`,
+    cName: 'submenu-item',
+  }
+];
+
+
+//Accesorios
 export const accesoriesDropdown = [
   {
     id: 1,

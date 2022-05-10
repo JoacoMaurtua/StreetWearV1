@@ -3,17 +3,20 @@ import './NavMenu.scss';
 import { navItems } from './navItems';
 import DropDown from '../DropDown.js/DropDown';
 import { brandsDropdown } from '../NavMenu/navItems';
-import {categorysDropdown} from '../NavMenu/navItems';
+import {categorysManDropdown} from '../NavMenu/navItems';
+import {categorysWomanDropdown} from '../NavMenu/navItems';
 import { accesoriesDropdown } from '../NavMenu/navItems';
 
 
 
 const NavMenu = () => {
+
   const [dropDown,setDropDown] = useState(false);
   const [dropDown2,setDropDown2] = useState(false);
   const [dropDown3,setDropDown3] = useState(false);
   const [dropDown4,setDropDown4] = useState(false);
-  
+
+
   return (
     <>
       <nav className="navBar">
@@ -41,7 +44,7 @@ const NavMenu = () => {
                   onMouseLeave={() => setDropDown2(false)}
                 >
                   {item.title}
-                  {dropDown2 && <DropDown propDropdown={categorysDropdown}/>}
+                  {dropDown2 && <DropDown propDropdown={categorysManDropdown}/>}
                 </li>
               );
 
@@ -54,7 +57,7 @@ const NavMenu = () => {
                   onMouseLeave={() => setDropDown3(false)}
                 >
                   {item.title}
-                  {dropDown3 && <DropDown propDropdown={categorysDropdown}/>}
+                  {dropDown3 && <DropDown propDropdown={categorysWomanDropdown}/>}
                 </li>
               );
 
