@@ -11,7 +11,7 @@ const findProduct = asyncHandler(async (req, res) => {
   //funcionalidad para la busqueda
   const keyword = req.query.keyword
   ? {
-      $or: [ 
+      $or: [  //filtra los productos que cumplan con alguna de las condiciones del array
         {
           name: {
             $regex: req.query.keyword,
@@ -37,6 +37,7 @@ const findProduct = asyncHandler(async (req, res) => {
           },
         },
       ],
+
     }
   : {}
 

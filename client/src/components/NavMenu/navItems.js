@@ -44,8 +44,8 @@ export const brandsDropdown = [
   },
   {
     id: 4,
-    title: 'Converse',
-    path: `/search/Converse`,
+    title: 'DC',
+    path: `/search/DC`,
     cName: 'submenu-item',
   },
   {
@@ -92,37 +92,37 @@ export const categorysManDropdown = [
   {
     id: 1,
     title: 'Sneakers',
-    path: `/search/Hombre-Sneakers`,
+    path: `/search/Hombre&Sneakers`,
     cName: 'submenu-item',
   },
   {
     id: 2,
     title: 'Poleras & Casacas',
-    path: `/search/Hombre-Poleras&Casacas`,
+    path: `/search/Hombre&Poleras&Casacas`,
     cName: 'submenu-item',
   },
   {
     id: 3,
     title: 'Polos',
-    path: `/search/Hombre-Polos`,
+    path: `/search/Hombre&Polos`,
     cName: 'submenu-item',
   },
   {
     id: 4,
     title: 'Shorts',
-    path: `/search/Hombre-Shorts`,
+    path: `/search/Hombre&Shorts`,
     cName: 'submenu-item',
   },
   {
     id: 5,
     title: 'Pants & Joggers',
-    path: `/search/Hombre-Pants&Joggers`,
+    path: `/search/Hombre&Pants&Joggers`,
     cName: 'submenu-item',
   },
   {
     id: 6,
     title: 'Accesorios',
-    path: `/search/Hombre-Accesorios`,
+    path: `/search/Accesorios`,
     cName: 'submenu-item',
   }
 ];
@@ -133,37 +133,37 @@ export const categorysWomanDropdown = [
   {
     id: 1,
     title: 'Sneakers',
-    path: `/search/Mujer-Sneakers`,
+    path: `/search/Mujer&Sneakers`,
     cName: 'submenu-item',
   },
   {
     id: 2,
     title: 'Poleras & Casacas',
-    path: `/search/Mujer-Poleras&Casacas`,
+    path: `/search/Mujer&Poleras&Casacas`,
     cName: 'submenu-item',
   },
   {
     id: 3,
     title: 'Polos',
-    path: `/search/Mujer-Polos`,
+    path: `/search/Mujer&Polos`,
     cName: 'submenu-item',
   },
   {
     id: 4,
     title: 'Shorts',
-    path: `/search/Mujer-Shorts`,
+    path: `/search/Mujer&Shorts`,
     cName: 'submenu-item',
   },
   {
     id: 5,
     title: 'Pants & Joggers',
-    path: `/search/Mujer-Pants&Joggers`,
+    path: `/search/Mujer&Pants&Joggers`,
     cName: 'submenu-item',
   },
   {
     id: 6,
     title: 'Accesorios',
-    path: `/search/Mujer-Accesorios`,
+    path: `/search/Mujer&Accesorios`,
     cName: 'submenu-item',
   }
 ];
@@ -174,31 +174,31 @@ export const accesoriesDropdown = [
   {
     id: 1,
     title: 'Gorras',
-    path: `/search/Gorras`,
+    path: `/search/Accesorios&Gorras`,
     cName: 'submenu-item',
   },
   {
     id: 2,
     title: 'Lentes',
-    path: `/search/Lentes`,
+    path: `/search/Accesorios&Lentes`,
     cName: 'submenu-item',
   },
   {
     id: 3,
     title: 'Mochilas',
-    path: `/search/Mochilas`,
+    path: `/search/Accesorios&Mochilas`,
     cName: 'submenu-item',
   },
   {
     id: 4,
     title: 'Bolsos',
-    path: `/search/Bolsos`,
+    path: `/search/Accesorios&Bolsos`,
     cName: 'submenu-item',
   },
   {
     id: 5,
     title: 'Canguros',
-    path: `/search/Canguros`,
+    path: `/search/Accesorios&Canguros`,
     cName: 'submenu-item',
   },
  
