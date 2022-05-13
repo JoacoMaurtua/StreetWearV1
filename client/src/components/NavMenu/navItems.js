@@ -116,7 +116,7 @@ export const categorysManDropdown = [
   {
     id: 5,
     title: 'Pants & Joggers',
-    path: `/search/Hombre&Pants&Joggers`,
+    path: `/search/Hombre&Pants-Joggers`,
     cName: 'submenu-item',
   },
   {
@@ -139,7 +139,7 @@ export const categorysWomanDropdown = [
   {
     id: 2,
     title: 'Poleras & Casacas',
-    path: `/search/Mujer&Poleras&Casacas`,
+    path: `/search/Mujer&Poleras-Casacas`,
     cName: 'submenu-item',
   },
   {
@@ -157,7 +157,7 @@ export const categorysWomanDropdown = [
   {
     id: 5,
     title: 'Pants & Joggers',
-    path: `/search/Mujer&Pants&Joggers`,
+    path: `/search/Mujer&Pants-Joggers`,
     cName: 'submenu-item',
   },
   {

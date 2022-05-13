@@ -19,21 +19,23 @@ const Homescreen = () => {
 
   const {keyword} = useParams();
 
+  const {keyword2} = useParams();
+
   const {pageNumber} = useParams() || 1;
  
   const productList = useSelector((state) => state.productList); //extrae datos del estado del store, en este caso la propiedad productList
   const { loading, error, products, pages, page } = productList; //extrae las propiedades del objeto que devuelve el productReducer
 
   useEffect(() => { //activa las funcionalidades de las acciones
-    dispatch(listProducts(keyword,pageNumber)); //llamo a la funcion creadora de acciones la cual despacha la data del API
-  }, [dispatch,keyword,pageNumber]);
+    dispatch(listProducts(keyword,keyword2,pageNumber)); //llamo a la funcion creadora de acciones la cual despacha la data del API
+  }, [dispatch,keyword,keyword2,pageNumber]);
 
   return (
     <>
       <Meta />
       <NavMenu />
-      {!keyword ? <ProductCarousel/> : <Link to='/' className='btn btn-light'>Regresar</Link>}
       <h1 style={{ margin: '2rem 0' }}>Últimos Productos</h1>
+      {!keyword ? <ProductCarousel/> : <Link to='/' className='btn btn-light'>Regresar</Link>}
       {loading ? ( //Si la data esta cargando(loading:true en el reducer)
         <Loader />
       ) : error ? (
@@ -47,7 +49,7 @@ const Homescreen = () => {
             </Col>
           ))}
         </Row>
-        <Paginate pages={pages} page={page} keyword={keyword ? keyword: ''}/> {/* puede ser que aqui implemente una funcionalidad */}
+        <Paginate pages={pages} page={page} keyword={keyword ? keyword: ''} keyword2={keyword2 ? keyword2: ''}/> {/* puede ser que aqui implemente una funcionalidad */}
         </>
       )}
     </>
