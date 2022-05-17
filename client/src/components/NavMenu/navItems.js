@@ -92,31 +92,31 @@ export const categorysManDropdown = [
   {
     id: 1,
     title: 'Sneakers',
-    path: `/search/Hombre&Sneakers`,
+    path: `/search/Hombre/Sneakers`, //no se como configurar esta ruta para que hayan dos query strings
     cName: 'submenu-item',
   },
   {
     id: 2,
     title: 'Poleras & Casacas',
-    path: `/search/Hombre&Poleras&Casacas`,
+    path: `/search/Hombre/Poleras&Casacas`,
     cName: 'submenu-item',
   },
   {
     id: 3,
     title: 'Polos',
-    path: `/search/Hombre&Polos`,
+    path: `/search/Hombre/Polos`,
     cName: 'submenu-item',
   },
   {
     id: 4,
     title: 'Shorts',
-    path: `/search/Hombre&Shorts`,
+    path: `/search/Hombre/Shorts`,
     cName: 'submenu-item',
   },
   {
     id: 5,
     title: 'Pants & Joggers',
-    path: `/search/Hombre&Pants-Joggers`,
+    path: `/search/Hombre/Pants-Joggers`,
     cName: 'submenu-item',
   },
   {
