@@ -9,68 +9,76 @@ const findProduct = asyncHandler(async (req, res) => {
   const page = Number(req.query.pageNumber) || 1;
 
   //funcionalidad para la busqueda
-  console.log({keyword:req.query.keyword});
-  console.log({keyword2:req.query.keyword2});
-  const keyword = req.query.keyword
-  ? {
-      $or: [  //filtra los productos que cumplan con alguna de las condiciones del array
-        {
-          name: {
-            $regex: req.query.keyword,
-            $options: 'i',
-          },
-        },
-        {
-          brand: {
-            $regex: req.query.keyword,
-            $options: 'i',
-          },
-        },
-        {
-          category: {
-            $regex: req.query.keyword,
-            $options: 'i',
-          },
-        },
-        {
-          gender: {
-            $regex: req.query.keyword,
-            $options: 'i',
-          },
-        },
-      ],
-    }
-  : {}
+  console.log({ keyword: req.query.keyword });
+  console.log({ keyword2: req.query.keyword2 });
 
+  const keyword = req.query.keyword
+    ? {
+        $or: [
+          //filtra los productos que cumplan con alguna de las condiciones del array
+          {
+            name: {
+              $regex: req.query.keyword,
+              $options: 'i',
+            },
+          },
+          {
+            brand: {
+              $regex: req.query.keyword,
+              $options: 'i',
+            },
+          },
+          {
+            category: {
+              $regex: req.query.keyword,
+              $options: 'i',
+            },
+          },
+          {
+            gender: {
+              $regex: req.query.keyword,
+              $options: 'i',
+            },
+          },
+        ],
+      }
+    : {};
 
   const keyword2 = req.query.keyword2
-  ? {
-      $or: [  
-        {
-          name: {
-            $regex: req.query.keyword2,
-            $options: 'i',
+    ? {
+        $or: [
+          //filtra los productos que cumplan con alguna de las condiciones del array
+          {
+            name: {
+              $regex: req.query.keyword2,
+              $options: 'i',
+            },
           },
-        },
-        {
-          brand: {
-            $regex: req.query.keyword2,
-            $options: 'i',
+          {
+            brand: {
+              $regex: req.query.keyword2,
+              $options: 'i',
+            },
           },
-        },
-        {
-          category: {
-            $regex: req.query.keyword2,
-            $options: 'i',
+          {
+            category: {
+              $regex: req.query.keyword2,
+              $options: 'i',
+            },
           },
-        },
-      ],
-    }
-  : {};
-  
-  
-  const count = await Product.countDocuments({ ...keyword,...keyword2 });
-  const products = await Product.find({ ...keyword,...keyword2 })
+          {
+            gender: {
+              $regex: req.query.keyword2,
+              $options: 'i',
+            },
+          },
+        ],
+      }
+    : {};
+
+    
+  const count = await Product.countDocuments({ ...keyword });
+  const products = await Product.find({ $and: [keyword,keyword2] })
     .limit(pageSize)
     .skip(pageSize * (page - 1));
 

@@ -58,7 +58,7 @@ const addOrderItems = asyncHandler(async (req, res) => {
 const updateOrderToPaid = asyncHandler(async (req, res) => {
   const order = await Order.findById(req.params.id)
 
-  if (order) {
+  if (order) { //esto es lo que quiero replicar de paypal
     order.isPaid = true
     order.paidAt = Date.now()
     order.paymentResult = {

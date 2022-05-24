@@ -133,37 +133,37 @@ export const categorysWomanDropdown = [
   {
     id: 1,
     title: 'Sneakers',
-    path: `/search/Mujer&Sneakers`,
+    path: `/search/Mujer/Sneakers`,
     cName: 'submenu-item',
   },
   {
     id: 2,
     title: 'Poleras & Casacas',
-    path: `/search/Mujer&Poleras-Casacas`,
+    path: `/search/Mujer/Poleras-Casacas`,
     cName: 'submenu-item',
   },
   {
     id: 3,
     title: 'Polos',
-    path: `/search/Mujer&Polos`,
+    path: `/search/Mujer/Polos`,
     cName: 'submenu-item',
   },
   {
     id: 4,
     title: 'Shorts',
-    path: `/search/Mujer&Shorts`,
+    path: `/search/Mujer/Shorts`,
     cName: 'submenu-item',
   },
   {
     id: 5,
     title: 'Pants & Joggers',
-    path: `/search/Mujer&Pants-Joggers`,
+    path: `/search/Mujer/Pants-Joggers`,
     cName: 'submenu-item',
   },
   {
     id: 6,
     title: 'Accesorios',
-    path: `/search/Mujer&Accesorios`,
+    path: `/search/Mujer/Accesorios`,
     cName: 'submenu-item',
   }
 ];
