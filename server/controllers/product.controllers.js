@@ -5,12 +5,8 @@ const asyncHandler = require('express-async-handler');
 //DEVOLVER TODA LA LISTA DE PRODUCTOS
 const findProduct = asyncHandler(async (req, res) => {
   //funcionalidad para la paginacion tomando en cuenta el backend
-  const pageSize = 8; //numero de productos maximo por pagina
+  const pageSize = 2; //numero de productos maximo por pagina
   const page = Number(req.query.pageNumber) || 1;
-
-  //funcionalidad para la busqueda
-  console.log({ keyword: req.query.keyword });
-  console.log({ keyword2: req.query.keyword2 });
 
   const keyword = req.query.keyword
     ? {
@@ -47,7 +43,6 @@ const findProduct = asyncHandler(async (req, res) => {
   const keyword2 = req.query.keyword2
     ? {
         $or: [
-          //filtra los productos que cumplan con alguna de las condiciones del array
           {
             name: {
               $regex: req.query.keyword2,
@@ -76,9 +71,9 @@ const findProduct = asyncHandler(async (req, res) => {
       }
     : {};
 
-    
-  const count = await Product.countDocuments({ ...keyword });
-  const products = await Product.find({ $and: [keyword,keyword2] })
+
+  const count = await Product.countDocuments({ $and: [keyword, keyword2] });
+  const products = await Product.find({ $and: [keyword, keyword2] })
     .limit(pageSize)
     .skip(pageSize * (page - 1));
 
