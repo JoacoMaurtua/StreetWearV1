@@ -77,7 +77,7 @@ const findProduct = asyncHandler(async (req, res) => {
     .limit(pageSize)
     .skip(pageSize * (page - 1));
 
-  res.json({ products, page, pages: Math.ceil(count / pageSize) });
+  res.json({ products, page, pages: Math.ceil(count / pageSize) }); //creo que no hay problema con la paginacion aqui
 });
 
 //DEVOLVER UN SOLO PRODUCTO

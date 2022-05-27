@@ -47,10 +47,8 @@ const App = () => {
           <Route path='/search/:keyword' component={HomeScreen} exact/> 
           <Route path='/search/:keyword/:keyword2' component={HomeScreen} exact/> 
           <Route path='/page/:pageNumber' component={HomeScreen} exact/> {/* Funciona bien siempre */}
-          <Route path='/search/:keyword?/page/:pageNumber?' component={HomeScreen} exact/>   {/* Comportamiento secundario inesperado */}
+          <Route path='/search/:keyword/page/:pageNumber' component={HomeScreen} exact/>   {/* Comportamiento secundario inesperado */}
           <Route path='/search/:keyword?/:keyword2?/page/:pageNumber?' component={HomeScreen} exact/> {/* Comportamiento secundario inesperado */}
-         
-
         </Container>
       </main>
       <Footer/>
