@@ -28,6 +28,7 @@ const App = () => {
       <Header/>
       <main className="py-3">
         <Container>
+          <Route path='/' component={HomeScreen} exact/> 
           <Route path='/register' component={RegisterScreen} />
           <Route path='/login' component={LoginScreen} />
           <Route path='/profile' component={ProfileScreen} />
@@ -45,10 +46,10 @@ const App = () => {
           <Route path='/admin/orderlist' component={OrderListScreen}/>
           <Route path='/search/:keyword' component={HomeScreen} exact/> 
           <Route path='/search/:keyword/:keyword2' component={HomeScreen} exact/> 
-          <Route path='/page/:pageNumber' component={HomeScreen} exact/> 
-          <Route path='/search/:keyword?/page/:pageNumber?' component={HomeScreen} exact/>   {/* Por si el resultado de una busqueda da mas productos que los que entran en una pagina */}
-          <Route path='/search/:keyword?/:keyword2?/page/:pageNumber?' component={HomeScreen} exact/> 
-          <Route path='/' component={HomeScreen} exact/> 
+          <Route path='/page/:pageNumber' component={HomeScreen} exact/> {/* Funciona bien siempre */}
+          <Route path='/search/:keyword?/page/:pageNumber?' component={HomeScreen} exact/>   {/* Comportamiento secundario inesperado */}
+          <Route path='/search/:keyword?/:keyword2?/page/:pageNumber?' component={HomeScreen} exact/> {/* Comportamiento secundario inesperado */}
+         
 
         </Container>
       </main>
