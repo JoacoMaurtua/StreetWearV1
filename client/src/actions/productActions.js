@@ -26,7 +26,7 @@ import {
 import axios from 'axios';
 
 //Funcion asincrona creadora de acciones
-export const listProducts = (keyword = '', keyword2 = '',pageNumber = '') => async (dispatch) => { //keyword se utilizara para hacer la busqueda
+export const listProducts = (keyword = '',keyword2='',pageNumber = '') => async (dispatch) => { //keyword se utilizara para hacer la busqueda
   try {
     dispatch({ type: PRODUCT_LIST_REQUEST }); //dispatch() envia la accion al store
 
@@ -47,6 +47,7 @@ export const listProducts = (keyword = '', keyword2 = '',pageNumber = '') => asy
     });
   }
 };
+
 
 export const listDetailsProduct = (id) => async (dispatch) => {
   try {
