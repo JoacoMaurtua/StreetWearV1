@@ -21,6 +21,7 @@ const ProductEditScreen = () => {
   const [image, setImage] = useState('');
   const [brand, setBrand] = useState('');
   const [category, setCategory] = useState('');
+  const [subcategory, setSubCategory] = useState(''); //agregando la nueva categoria
   const [gender, setGender] = useState('');
   const [countInStock, setCountInStock] = useState(0);
   const [description, setDescription] = useState('');
@@ -50,6 +51,7 @@ const ProductEditScreen = () => {
         setImage(product.image);
         setBrand(product.brand);
         setCategory(product.category);
+        setSubCategory(product.subcategory);
         setGender(product.gender);
         setCountInStock(product.countInStock);
         setDescription(product.description);
@@ -67,6 +69,7 @@ const ProductEditScreen = () => {
         image,
         brand,
         category,
+        subcategory,
         gender,
         description,
         countInStock,
@@ -193,6 +196,95 @@ const ProductEditScreen = () => {
                 <option value={'Accesorios'}>Accesorios</option>
 
               </Form.Select>
+            </Form.Group>
+
+            <Form.Group controlId="subcategory">
+              <Form.Label>Subcategoría: </Form.Label>
+              {
+                (
+                  () => {
+                    switch(category){
+                      case 'Sneakers':
+                        return(
+                            <Form.Select
+                              style={{ marginBottom: '1rem' }}
+                              type="text"
+                              value={subcategory}
+                              onChange={(e) => setSubCategory(e.target.value)}
+                              >
+                          
+                            <option value={'Urbanas'}>Urbanas</option>
+                            <option value={'Deportivas'}>Deportivas</option>
+                            </Form.Select>
+                        ); 
+
+                        case 'Poleras&Casacas':
+                          return(
+                              <Form.Select
+                                style={{ marginBottom: '1rem' }}
+                                type="text"
+                                value={subcategory}
+                                onChange={(e) => setSubCategory(e.target.value)}
+                                >
+                            
+                              <option value={'Poleras'}>Poleras</option>
+                              <option value={'Casacas'}>Casacas</option>
+                              </Form.Select>
+                          );
+
+                        case 'Polos' || 'Shorts':
+                          return(
+                              <Form.Select
+                                style={{ marginBottom: '1rem' }}
+                                type="text"
+                                value={subcategory}
+                                onChange={(e) => setSubCategory(e.target.value)}
+                                >
+                            
+                              <option value={'Urbanos'}>Urbanos</option>
+                              <option value={'Deportivos'}>Deportivos</option>
+                              </Form.Select>
+                          );
+
+                        case 'Pants&Joggers':
+                          return(
+                              <Form.Select
+                                style={{ marginBottom: '1rem' }}
+                                type="text"
+                                value={subcategory}
+                                onChange={(e) => setSubCategory(e.target.value)}
+                                >
+                            
+                              <option value={'Pants'}>Pants</option>
+                              <option value={'Joggers'}>Joggers</option>
+                              </Form.Select>
+                          );
+
+                        case 'Accesorios':
+                          return(
+                              <Form.Select
+                                style={{ marginBottom: '1rem' }}
+                                type="text"
+                                value={subcategory}
+                                onChange={(e) => setSubCategory(e.target.value)}
+                                >
+                            
+                                <option value={'Ninguna'}>Ninguna</option>
+                                <option value={'Gorras'}>Gorras</option>
+                                <option value={'Lentes'}>Lentes</option>
+                                <option value={'Mochilas'}>Mochilas</option>
+                                <option value={'Bolsos'}>Bolsos</option>
+                                <option value={'Canguros'}>Canguros</option>
+                              </Form.Select>
+                          );
+
+
+                      default:
+                        return '';
+                    }
+                  }
+                )()
+              }
             </Form.Group>
 
             <Form.Group controlId="sex">

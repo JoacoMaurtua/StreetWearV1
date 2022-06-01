@@ -8,6 +8,9 @@ const findProduct = asyncHandler(async (req, res) => {
   const pageSize = 3; //numero de productos maximo por pagina
   const page = Number(req.query.pageNumber) || 1;
 
+  console.log(req.query.keyword);
+  console.log(req.query.keyword2);
+
   const keyword = req.query.keyword
     ? {
         $or: [
@@ -26,6 +29,12 @@ const findProduct = asyncHandler(async (req, res) => {
           },
           {
             category: {
+              $regex: req.query.keyword,
+              $options: 'i',
+            },
+          },
+          {
+            subcategory: {
               $regex: req.query.keyword,
               $options: 'i',
             },
@@ -57,6 +66,12 @@ const findProduct = asyncHandler(async (req, res) => {
           },
           {
             category: {
+              $regex: req.query.keyword2,
+              $options: 'i',
+            },
+          },
+          {
+            subcategory: {
               $regex: req.query.keyword2,
               $options: 'i',
             },
@@ -121,6 +136,7 @@ const createProduct = asyncHandler(async (req, res) => {
     brand: 'Sample brand',
     gender: 'Hombre',
     category: 'Sneakers',
+    subcategory: 'Ninguna',
     countInStock: 0,
     numReviews: 0,
     description: 'Sample description',
@@ -150,6 +166,7 @@ const updateProduct = asyncHandler(async (req, res) => {
     brand,
     gender,
     category,
+    subcategory,
     countInStock,
   } = req.body;
 
@@ -163,6 +180,7 @@ const updateProduct = asyncHandler(async (req, res) => {
     product.brand = brand;
     product.gender = gender;
     product.category = category;
+    product.subcategory = subcategory;
     product.countInStock = countInStock;
 
     const updatedProduct = await product.save();

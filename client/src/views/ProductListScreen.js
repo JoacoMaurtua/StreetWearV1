@@ -108,6 +108,7 @@ const ProductListScreen = () => {
               <th>NOMBRE</th>
               <th>PRECIO</th>
               <th>CATEGORÍA</th>
+              <th>SUBCATEGORIA</th>
               <th>MARCA</th>
               <th></th>
             </tr>
@@ -120,6 +121,7 @@ const ProductListScreen = () => {
                 <td>{product.name}</td>
                 <td>S/.{product.price}</td>
                 <td>{product.category}</td>
+                <td>{product.subcategory}</td>
                 <td>{product.brand}</td>
                 <td>
                   <Link to={`/admin/product/${product._id}/edit`}>

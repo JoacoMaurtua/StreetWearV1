@@ -52,6 +52,10 @@ const productSchema = new mongoose.Schema({
     required: [true,'Este campo es obligatorio']
   },
 
+  subcategory:{
+    type: String,
+  },
+
   /* color:{
     type: String, required: false
   }, */

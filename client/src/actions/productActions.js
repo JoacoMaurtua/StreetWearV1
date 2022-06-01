@@ -70,6 +70,7 @@ export const listDetailsProduct = (id) => async (dispatch) => {
   }
 };
 
+
 export const deleteProduct = (id) => async (dispatch, getState) => {
   try {
     dispatch({
