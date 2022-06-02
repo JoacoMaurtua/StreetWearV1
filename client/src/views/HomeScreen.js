@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useState,useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Row, Col } from 'react-bootstrap';
+import { Container,Row, Col } from 'react-bootstrap';
 import Product from '../components/Product';
 import { listProducts } from '../actions/productActions'; //traemos las acciones de products
 import Message from '../components/Message';
@@ -10,6 +10,8 @@ import Paginate from '../components/Paginate';
 import ProductCarousel from '../components/ProductCarousel';
 import Meta from '../components/Meta';
 import NavMenu from '../components/NavMenu/NavMenu';
+import AsideMenu from '../components/AsideMenu/AsideMenu';
+
 
 //import axios from 'axios';
 
@@ -22,13 +24,16 @@ const Homescreen = () => {
   const {keyword2} = useParams();
 
   const {pageNumber} = useParams() || 1;
+
+  //creando el rango de precio
+  const [price, setPrice] =  useState([1,3000]);
  
   const productList = useSelector((state) => state.productList); //extrae datos del estado del store, en este caso la propiedad productList
   const { loading, error, products, pages, page } = productList; //extrae las propiedades del objeto que devuelve el productReducer
 
   useEffect(() => { //activa las funcionalidades de las acciones
-    dispatch(listProducts(keyword,keyword2,pageNumber)); //llamo a la funcion creadora de acciones la cual despacha la data del API
-  }, [dispatch,keyword,keyword2,pageNumber]);
+    dispatch(listProducts(keyword,keyword2,pageNumber,price)); //llamo a la funcion creadora de acciones la cual despacha la data del API
+  }, [dispatch,keyword,keyword2,pageNumber,price]);
 
   return (
     <>
@@ -41,16 +46,23 @@ const Homescreen = () => {
       ) : error ? (
         <Message variant='danger'>{error}</Message> //Si hubo un error se activa la accion PRODUCT_LIST_FAIL
       ) : (
-        <>
-        <Row>
-          {products.map((product, index) => (
-            <Col key={index} sm={12} md={6} lg={4} xl={3}>
-              <Product product={product} />
+        <Container fluid>
+          <Row>
+            <Col sm={12} lg={3} style={{paddingLeft:'0'}}>
+              <AsideMenu price={price} setPrice={setPrice}/>
             </Col>
-          ))}
-        </Row>
-        <Paginate pages={pages} page={page} keyword={keyword ? keyword: ''} keyword2={keyword2 ? keyword2:''}/> {/* puede ser que aqui implemente una funcionalidad */}
-        </>
+            <Col sm={12} lg={9} style={{paddingRight:'0'}}>
+              <Row>
+                {products.map((product, index) => (
+                  <Col key={index} sm={12} md={6} lg={4}>
+                    <Product product={product} />
+                  </Col>
+                ))}
+              </Row>
+            </Col>
+          </Row>
+          <Paginate pages={pages} page={page} keyword={keyword ? keyword: ''} keyword2={keyword2 ? keyword2:''}/> {/* puede ser que aqui implemente una funcionalidad */}
+        </Container>
       )}
     </>
   );

@@ -5,7 +5,7 @@ const asyncHandler = require('express-async-handler');
 //DEVOLVER TODA LA LISTA DE PRODUCTOS
 const findProduct = asyncHandler(async (req, res) => {
   //funcionalidad para la paginacion tomando en cuenta el backend
-  const pageSize = 3; //numero de productos maximo por pagina
+  const pageSize = 8; //numero de productos maximo por pagina
   const page = Number(req.query.pageNumber) || 1;
 
   console.log(req.query.keyword);

@@ -26,11 +26,11 @@ import {
 import axios from 'axios';
 
 //Funcion asincrona creadora de acciones
-export const listProducts = (keyword = '',keyword2='',pageNumber = '') => async (dispatch) => { //keyword se utilizara para hacer la busqueda
+export const listProducts = (keyword = '',keyword2='',pageNumber = '',price) => async (dispatch) => { //keyword se utilizara para hacer la busqueda
   try {
     dispatch({ type: PRODUCT_LIST_REQUEST }); //dispatch() envia la accion al store
 
-    const { data } = await axios.get(`/api/products?keyword=${keyword}&keyword2=${keyword2}&pageNumber=${pageNumber}`); 
+    const { data } = await axios.get(`/api/products?keyword=${keyword}&keyword2=${keyword2}&pageNumber=${pageNumber}&price[lte]=${price[1]}&price[gte]=${price[0]}`); 
  
     dispatch({
       type: PRODUCT_LIST_SUCCESS, //tipo de accion a realizar
