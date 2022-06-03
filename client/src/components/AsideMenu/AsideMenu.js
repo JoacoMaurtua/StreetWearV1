@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './AsideMenu.scss';
 import { Form } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 
@@ -8,17 +9,37 @@ const { createSliderWithTooltip } = Slider;
 const Range = createSliderWithTooltip(Slider.Range);
 
 const AsideMenu = ({ price, setPrice }) => {
+  const history = useHistory();
+
+  const [keyword, setKeyword] = useState('');
+
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
+    if (keyword) {
+      //eliminar espacios en blanco
+      history.push(`/search/${keyword}`);
+    } else {
+      history.push('/');
+    }
+  };
+
   return (
     <div className="filters">
       <h4>Filtros</h4>
       <div className="category fcontainer">
         <h5>Categoria</h5>
-        <Form>
-          <Form.Check type={'checkbox'} id={'urbanas'} label={'Urbanas'} />
+        <Form onSubmit={onSubmitHandler}>
+          <Form.Check
+            type={'checkbox'}
+            id={'urbanas'}
+            label={'Urbanas'}
+            onChange={() => setKeyword('Urbanas')}
+          />
           <Form.Check
             type={'checkbox'}
             id={'deportivas'}
             label={'Deportivas'}
+            onChange={() => setKeyword('Deportivas')}
           />
         </Form>
       </div>
@@ -43,7 +64,6 @@ const AsideMenu = ({ price, setPrice }) => {
         />
       </div>
 
-   
       <div className="brand fcontainer">
         <h5>Marcas</h5>
         <Form>
@@ -51,7 +71,11 @@ const AsideMenu = ({ price, setPrice }) => {
           <Form.Check type={'checkbox'} id={'DC'} label={'DC'} />
           <Form.Check type={'checkbox'} id={'Nike'} label={'Nike'} />
           <Form.Check type={'checkbox'} id={'Reebok'} label={'Reebok'} />
-          <Form.Check type={'checkbox'} id={'NewBalance'} label={'NewBalance'}/>
+          <Form.Check
+            type={'checkbox'}
+            id={'NewBalance'}
+            label={'NewBalance'}
+          />
           <Form.Check type={'checkbox'} id={'Fila'} label={'Fila'} />
           <Form.Check type={'checkbox'} id={'Puma'} label={'Puma'} />
           <Form.Check type={'checkbox'} id={'Jordan'} label={'Jordan'} />
@@ -60,10 +84,11 @@ const AsideMenu = ({ price, setPrice }) => {
 
       {/* AQUI IRA EL DIV DE LAS TALLAS DESPUES */}
 
-      <div className='filter-btn'>
-        <button>Filtrar <i class="fas fa-filter"></i></button>
+      <div className="filter-btn">
+        <button>
+          Filtrar <i class="fas fa-filter"></i>
+        </button>
       </div>
-      
     </div>
   );
 };
