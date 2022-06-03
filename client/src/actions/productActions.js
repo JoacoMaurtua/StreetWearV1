@@ -30,7 +30,7 @@ export const listProducts = (keyword = '',keyword2='',pageNumber = '',price /* =
   try {
     dispatch({ type: PRODUCT_LIST_REQUEST }); //dispatch() envia la accion al store
     console.log('precio cuando se ejecuta la accion:',price); //si actualiza los valores correctamente
-    const { data } = await axios.get(`/api/products?keyword=${keyword}&keyword2=${keyword2}&pageNumber=${pageNumber}&price[lte]=${price[1]}&price[gte]=${price[0]}`); 
+    const { data } = await axios.get(`/api/products?keyword=${keyword}&keyword2=${keyword2}&pageNumber=${pageNumber}`); //&price[lte]=${price[1]}&price[gte]=${price[0]}
  
     dispatch({
       type: PRODUCT_LIST_SUCCESS, //tipo de accion a realizar

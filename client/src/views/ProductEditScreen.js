@@ -212,7 +212,7 @@ const ProductEditScreen = () => {
                               value={subcategory}
                               onChange={(e) => setSubCategory(e.target.value)}
                               >
-                          
+                            <option value={'Ninguna'}>Ninguna</option>
                             <option value={'Urbanas'}>Urbanas</option>
                             <option value={'Deportivas'}>Deportivas</option>
                             </Form.Select>
@@ -226,7 +226,7 @@ const ProductEditScreen = () => {
                                 value={subcategory}
                                 onChange={(e) => setSubCategory(e.target.value)}
                                 >
-                            
+                              <option value={'Ninguna'}>Ninguna</option>
                               <option value={'Poleras'}>Poleras</option>
                               <option value={'Casacas'}>Casacas</option>
                               </Form.Select>
@@ -240,7 +240,7 @@ const ProductEditScreen = () => {
                                 value={subcategory}
                                 onChange={(e) => setSubCategory(e.target.value)}
                                 >
-                            
+                               <option value={'Ninguna'}>Ninguna</option>
                               <option value={'Urbanos'}>Urbanos</option>
                               <option value={'Deportivos'}>Deportivos</option>
                               </Form.Select>
@@ -254,7 +254,7 @@ const ProductEditScreen = () => {
                                 value={subcategory}
                                 onChange={(e) => setSubCategory(e.target.value)}
                                 >
-                            
+                              <option value={'Ninguna'}>Ninguna</option>
                               <option value={'Pants'}>Pants</option>
                               <option value={'Joggers'}>Joggers</option>
                               </Form.Select>
@@ -268,7 +268,7 @@ const ProductEditScreen = () => {
                                 value={subcategory}
                                 onChange={(e) => setSubCategory(e.target.value)}
                                 >
-                            
+             
                                 <option value={'Ninguna'}>Ninguna</option>
                                 <option value={'Gorras'}>Gorras</option>
                                 <option value={'Lentes'}>Lentes</option>

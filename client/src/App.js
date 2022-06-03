@@ -57,3 +57,13 @@ const App = () => {
 export default App;
 
 
+
+/* 
+  COSAS URGENTES A SOLUCIONAR:
+  
+  *El controller para crear un producto no debe tener una plnatilla por defecto(extropea todo!)
+  *El filtrado por precio no funciona como deberia, al agregarle los parametros de precio a la ruta, genera errores al momento de mostrar la lista de productos del admin
+  *Al crear o editar un producto o usuario, se debe dar refresh para que muestre los datos actuales, si no muestra los antiguos.
+*/
+
+
