@@ -20,8 +20,6 @@ import ProductListScreen from './views/ProductListScreen';
 import ProductEditScreen from './views/ProductEditScreen';
 import OrderListScreen from './views/OrderListScreen';
 
-
-
 const App = () => {
   return (
     <Router>

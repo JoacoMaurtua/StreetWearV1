@@ -10,6 +10,7 @@ const findProduct = asyncHandler(async (req, res) => {
 
   console.log(req.query.keyword);
   console.log(req.query.keyword2);
+ 
 
   const keyword = req.query.keyword
     ? {
@@ -86,12 +87,25 @@ const findProduct = asyncHandler(async (req, res) => {
       }
     : {};
 
+    /* const price = req.query.price //No se si sea necesario
+    ? {
+        $or: [
+          {
+            price: {
+              $regex: req.query.price,
+              $options: 'i',
+            },
+          },
+        ],
+      }
+    : {};
+ */
 
-  const count = await Product.countDocuments({ $and: [keyword, keyword2] });
+  const count = await Product.countDocuments({ $and: [keyword, keyword2]});
   const products = await Product.find({ $and: [keyword, keyword2] })
     .limit(pageSize)
-    .skip(pageSize * (page - 1));
-
+    .skip(pageSize * (page - 1))
+   
   res.json({ products, page, pages: Math.ceil(count / pageSize) }); //creo que no hay problema con la paginacion aqui
 });
 

@@ -25,5 +25,22 @@
     margin-top: 3rem;
   }
 
+  .filter-btn{
+    margin-top: 1.5rem;
+    margin-left: 1rem;
+    button{
+      padding: .5rem;
+      border-radius: 8px;
+      background-color:#2f4858;
+      color: white;
+      font-weight: bold;
+      border: none;
+
+      &:hover{
+        background-color:#537e98;
+      }
+    }
+  }
+
   
 }
