@@ -10,6 +10,7 @@ const findProduct = asyncHandler(async (req, res) => {
 
   console.log(req.query.keyword);
   console.log(req.query.keyword2);
+  console.log(req.query.keyword3);
  
 
   const keyword = req.query.keyword
@@ -87,22 +88,48 @@ const findProduct = asyncHandler(async (req, res) => {
       }
     : {};
 
-    /* const price = req.query.price //No se si sea necesario
+
+    const keyword3 = req.query.keyword3
     ? {
         $or: [
           {
-            price: {
-              $regex: req.query.price,
+            name: {
+              $regex: req.query.keyword3,
+              $options: 'i',
+            },
+          },
+          {
+            brand: {
+              $regex: req.query.keyword3,
+              $options: 'i',
+            },
+          },
+          {
+            category: {
+              $regex: req.query.keyword3,
+              $options: 'i',
+            },
+          },
+          {
+            subcategory: {
+              $regex: req.query.keyword3,
+              $options: 'i',
+            },
+          },
+          {
+            gender: {
+              $regex: req.query.keyword3,
               $options: 'i',
             },
           },
         ],
       }
     : {};
- */
 
-  const count = await Product.countDocuments({ $and: [keyword, keyword2]});
-  const products = await Product.find({ $and: [keyword, keyword2] })
+   
+
+  const count = await Product.countDocuments({ $and: [keyword, keyword2, keyword3]});
+  const products = await Product.find({ $and: [keyword, keyword2, keyword3] })
     .limit(pageSize)
     .skip(pageSize * (page - 1))
    
