@@ -17,11 +17,7 @@ import AsideMenu from '../components/AsideMenu/AsideMenu';
 const Homescreen = () => {
   const dispatch = useDispatch(); //devuelve una referencia al dispatch enviado por la accion al store
 
-  const { keyword } = useParams(); //idea: urilizar un arreglo de keywords
-
-  const { keyword2 } = useParams();
-
-  const { keyword3 } = useParams();
+  const { keyword, keyword2, keyword3 } = useParams(); //idea: urilizar un arreglo de keywords
 
   const { pageNumber } = useParams() || 1;
 

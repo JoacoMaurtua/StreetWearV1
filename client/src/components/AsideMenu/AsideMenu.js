@@ -10,7 +10,7 @@ const Range = createSliderWithTooltip(Slider.Range);
 
 const AsideMenu = ({ price, setPrice, keyword, keyword2 }) => {
   
-
+  //Aqui todo se pasara por props practicamente y se maperara de modo que quede dinamico
   return (
     <div className="filters">
       <h4>Filtros</h4>

@@ -20,10 +20,10 @@ const Paginate = ({ //DEVO MODIFICAR EL PAGINATE PARA QUE LAS PAGINAS LLEVEN A L
                 to={
                     !isAdmin
                       ? keyword && keyword2 && keyword3
-                        ? `/search/${keyword}/${keyword2}/page/${x + 1}` //Se distorciona el renderizado tanto con keyword como con keyword2
+                        ? `/search/${keyword}/${keyword2}/${keyword3}/page/${x + 1}` //Se distorciona el renderizado tanto con keyword como con keyword2
                               
                           : keyword && keyword2
-                          ? `/search/${keyword}/page/${x + 1}` // si hay dos palabras clave
+                          ? `/search/${keyword}/${keyword2}/page/${x + 1}` // si hay dos palabras clave
 
                           : keyword 
                           ? `/search/${keyword}/page/${x + 1}` // si hay una palabra clave
