@@ -29,7 +29,6 @@ export const listProducts =
   (
     keyword = '',
     keyword2 = '',
-    keyword3='',
     pageNumber = '',
     price /* = [1,3000] */
   ) =>
@@ -39,7 +38,7 @@ export const listProducts =
       dispatch({ type: PRODUCT_LIST_REQUEST }); //dispatch() envia la accion al store
       console.log('precio cuando se ejecuta la accion:', price); //si actualiza los valores correctamente
       const { data } = await axios.get(
-        `/api/products?keyword=${keyword}&keyword=${keyword2}&keyword=${keyword3}&pageNumber=${pageNumber}`
+        `/api/products?keyword=${keyword}&keyword2=${keyword2}&pageNumber=${pageNumber}`
       ); //&price[lte]=${price[1]}&price[gte]=${price[0]}
 
       dispatch({

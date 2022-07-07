@@ -115,6 +115,7 @@ const Cartscreen = () => {
                 className='btn-block'
                 disabled={cartItems.length === 0}
                 onClick={checkoutHandler}
+                style={{margin: '0 auto'}}
               >
                 Realizar Compra
               </Button>

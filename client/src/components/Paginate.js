@@ -7,8 +7,7 @@ const Paginate = ({ //DEVO MODIFICAR EL PAGINATE PARA QUE LAS PAGINAS LLEVEN A L
   page,
   isAdmin = false,
   keyword = '',
-  keyword2 = '',
-  keyword3 = ''
+  keyword2 = ''
 }) => {
   return (
     pages > 1 && (
@@ -19,14 +18,11 @@ const Paginate = ({ //DEVO MODIFICAR EL PAGINATE PARA QUE LAS PAGINAS LLEVEN A L
                 key={x + 1}
                 to={
                     !isAdmin
-                      ? keyword && keyword2 && keyword3
-                        ? `/search/${keyword}/${keyword2}/${keyword3}/page/${x + 1}` //Se distorciona el renderizado tanto con keyword como con keyword2
+                      ? keyword && keyword2
+                        ? `/search/${keyword}/${keyword2}/page/${x + 1}` //Se distorciona el renderizado tanto con keyword como con keyword2
                               
-                          : keyword && keyword2
-                          ? `/search/${keyword}/${keyword2}/page/${x + 1}` // si hay dos palabras clave
-
                           : keyword 
-                          ? `/search/${keyword}/page/${x + 1}` // si hay una palabra clave
+                          ? `/search/${keyword}/page/${x + 1}` // si hay dos palabras clave
               
                       : `/page/${x + 1}` //si no hay palabras clave
               
@@ -43,5 +39,3 @@ const Paginate = ({ //DEVO MODIFICAR EL PAGINATE PARA QUE LAS PAGINAS LLEVEN A L
 };
 
 export default Paginate;
-
-

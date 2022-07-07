@@ -4,8 +4,8 @@ const User = require('../models/user.models');
 
 const asyncHandler = require('express-async-handler');
 
-//MIDDLEWARE PARA VALIDAR EL TOKEN
 
+//MIDDLEWARE PARA VALIDAR EL TOKEN
 const protect = asyncHandler(async (req, res, next) => {
   let token
 

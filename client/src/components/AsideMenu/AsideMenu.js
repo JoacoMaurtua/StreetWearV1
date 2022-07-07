@@ -1,7 +1,6 @@
 import React from 'react';
 import './AsideMenu.scss';
 import { Form } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 
@@ -9,7 +8,6 @@ const { createSliderWithTooltip } = Slider;
 const Range = createSliderWithTooltip(Slider.Range);
 
 const AsideMenu = ({ price, setPrice, keyword, keyword2 }) => {
-  
   //Aqui todo se pasara por props practicamente y se maperara de modo que quede dinamico
   return (
     <div className="filters">
@@ -17,21 +15,17 @@ const AsideMenu = ({ price, setPrice, keyword, keyword2 }) => {
       <div className="category fcontainer">
         <h5>Categoria</h5>
         <Form>
-          <Link to = {`/search/${keyword}/${keyword2}/Urbanas`}> 
-            <Form.Check
-              type={'checkbox'}
-              id={'urbanas'}
-              label={'Urbanas'}
-            />
-          </Link>
-          
-          <Link to = {`/search/${keyword}/${keyword2}/Deportivas`}> 
-            <Form.Check
-              type={'checkbox'}
-              id={'deportivas'}
-              label={'Deportivas'}
-            />
-          </Link>
+          <Form.Check 
+            type={'checkbox'} 
+            id={'urbanas'} 
+            label={'Urbanas'} 
+          />
+
+          <Form.Check
+            type={'checkbox'}
+            id={'deportivas'}
+            label={'Deportivas'}
+          />
         </Form>
       </div>
 

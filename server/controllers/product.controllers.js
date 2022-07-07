@@ -8,100 +8,75 @@ const findProduct = asyncHandler(async (req, res) => {
   const pageSize = 8; //numero de productos maximo por pagina
   const page = Number(req.query.pageNumber) || 1;
 
-  
-  const { keyword } = req.query; //extraer de la query el valor de keyword que puede ser un array
-  let keywords = [];
-  if (Array.isArray(keyword)) {
-    keyword.forEach((key) => {
-
-      if (key === "") {
-        return;
-      }
-     
-      keywords.push({
+  const keyword = req.query.keyword
+    ? {
         $or: [
+          //filtra los productos que cumplan con alguna de las condiciones del array
           {
             name: {
-              $regex: key,
-              $options: "i",
+              $regex: req.query.keyword,
+              $options: 'i',
             },
           },
           {
             brand: {
-              $regex: key,
-              $options: "i",
+              $regex: req.query.keyword,
+              $options: 'i',
             },
           },
           {
             category: {
-              $regex: key,
-              $options: "i",
-            },
-          },
-          {
-            subcategory: {
-              $regex: key,
-              $options: "i",
+              $regex: req.query.keyword,
+              $options: 'i',
             },
           },
           {
             gender: {
-              $regex: key,
-              $options: "i",
+              $regex: req.query.keyword,
+              $options: 'i',
             },
           },
         ],
-      });
-    });
-  } else if (keyword) {
-    keywords.push({
-      $or: [
-        //filtra los productos que cumplan con alguna de las condiciones del array
-        {
-          name: {
-            $regex: keyword,
-            $options: "i",
-          },
-        },
-        {
-          brand: {
-            $regex: keyword,
-            $options: "i",
-          },
-        },
-        {
-          category: {
-            $regex: keyword,
-            $options: "i",
-          },
-        },
-        {
-          subcategory: {
-            $regex: keyword,
-            $options: "i",
-          },
-        },
-        {
-          gender: {
-            $regex: keyword,
-            $options: "i",
-          },
-        },
-      ],
-    });
-  } else {
-    keywords.push({});
-  }
+      }
+    : {};
 
-  console.log('keyword',keyword);
-  console.log('arreglo:',keywords);
+  const keyword2 = req.query.keyword2
+    ? {
+        $or: [
+          {
+            name: {
+              $regex: req.query.keyword2,
+              $options: 'i',
+            },
+          },
+          {
+            brand: {
+              $regex: req.query.keyword2,
+              $options: 'i',
+            },
+          },
+          {
+            category: {
+              $regex: req.query.keyword2,
+              $options: 'i',
+            },
+          },
+          {
+            gender: {
+              $regex: req.query.keyword2,
+              $options: 'i',
+            },
+          },
+        ],
+      }
+    : {};
 
-  const count = await Product.countDocuments({ $and: keywords });
-   
-  const products = await Product.find({ $and: keywords })
+
+  const count = await Product.countDocuments({ $and: [keyword, keyword2] });
+  const products = await Product.find({ $and: [keyword, keyword2] })
     .limit(pageSize)
     .skip(pageSize * (page - 1));
-   
+
   res.json({ products, page, pages: Math.ceil(count / pageSize) }); //creo que no hay problema con la paginacion aqui
 });
 
@@ -146,7 +121,6 @@ const createProduct = asyncHandler(async (req, res) => {
     brand: 'Sample brand',
     gender: 'Hombre',
     category: 'Sneakers',
-    subcategory: 'Ninguna',
     countInStock: 0,
     numReviews: 0,
     description: 'Sample description',
@@ -176,7 +150,6 @@ const updateProduct = asyncHandler(async (req, res) => {
     brand,
     gender,
     category,
-    subcategory,
     countInStock,
   } = req.body;
 
@@ -190,7 +163,6 @@ const updateProduct = asyncHandler(async (req, res) => {
     product.brand = brand;
     product.gender = gender;
     product.category = category;
-    product.subcategory = subcategory;
     product.countInStock = countInStock;
 
     const updatedProduct = await product.save();
@@ -232,19 +204,12 @@ const createReview = asyncHandler(async (req, res) => {
     //sobre las estrellas(operacion)
     /* rating = 
     reviews = [jhon.dhara,ben,brand,tom]
-
     jhnon --> 4 estrellas
-
     dhara --> 3 estrellas
-
     ben --> 4 estrellas
-
     brand --> 3 estrellas
-
     tom --> 5 estrellas
-
     suma = 19 estrellas/5 comentarios
-
     rating --> 3.8 estrellas */
     product.rating =
       product.reviews.reduce((acc, item) => item.rating + acc, 0) /
