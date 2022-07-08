@@ -8,6 +8,8 @@ const findProduct = asyncHandler(async (req, res) => {
   const pageSize = 8; //numero de productos maximo por pagina
   const page = Number(req.query.pageNumber) || 1;
 
+  //****8 Aqui en lugar de utilizar keywords por separado, debo aplicar esa logica a un arreglo de keywords
+
   const keyword = req.query.keyword
     ? {
         $or: [
@@ -72,8 +74,8 @@ const findProduct = asyncHandler(async (req, res) => {
     : {};
 
 
-  const count = await Product.countDocuments({ $and: [keyword, keyword2] });
-  const products = await Product.find({ $and: [keyword, keyword2] })
+  const count = await Product.countDocuments({ $and: [keyword, keyword2] }); //Aqui deberia recibir un arreglo
+  const products = await Product.find({ $and: [keyword, keyword2] }) //Aqui deberia recibir un arreglo
     .limit(pageSize)
     .skip(pageSize * (page - 1));
 

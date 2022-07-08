@@ -27,6 +27,7 @@ import axios from 'axios';
 //Funcion asincrona creadora de acciones
 export const listProducts =
   (
+    //6****Aqui en lugar de strings le enviaria un arreglo de strings
     keyword = '',
     keyword2 = '',
     pageNumber = '',
@@ -38,6 +39,9 @@ export const listProducts =
       dispatch({ type: PRODUCT_LIST_REQUEST }); //dispatch() envia la accion al store
       console.log('precio cuando se ejecuta la accion:', price); //si actualiza los valores correctamente
       const { data } = await axios.get(
+        //7*****Aqui tendria que desestructurar el arreglo en strings que compongan la URL de alguna manera
+
+
         `/api/products?keyword=${keyword}&keyword2=${keyword2}&pageNumber=${pageNumber}`
       ); //&price[lte]=${price[1]}&price[gte]=${price[0]}
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { Pagination } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
-const Paginate = ({ //DEVO MODIFICAR EL PAGINATE PARA QUE LAS PAGINAS LLEVEN A LAS RUTAS CORRECTAS
+const Paginate = ({ //****Aqui enviaria un arreglo de strings en lugar de keywords por separado
   pages,
   page,
   isAdmin = false,
@@ -14,7 +14,7 @@ const Paginate = ({ //DEVO MODIFICAR EL PAGINATE PARA QUE LAS PAGINAS LLEVEN A L
       <Pagination>
         {[...Array(pages).keys()].map((x) => (
          
-          <LinkContainer   /*Aqui esta el pedazo de codigo que probablemente contenga el error */
+          <LinkContainer   //5****Aqui tendria que modificar la logica segun el arreglo de strings usando algun prototype*/
                 key={x + 1}
                 to={
                     !isAdmin

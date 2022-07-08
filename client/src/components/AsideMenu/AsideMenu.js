@@ -7,8 +7,10 @@ import 'rc-slider/assets/index.css';
 const { createSliderWithTooltip } = Slider;
 const Range = createSliderWithTooltip(Slider.Range);
 
-const AsideMenu = ({ price, setPrice, keyword, keyword2 }) => {
-  //Aqui todo se pasara por props practicamente y se maperara de modo que quede dinamico
+const AsideMenu = ({ price, setPrice }) => {//Aqui todo se pasara por props practicamente y se maperara de modo que quede dinamico
+   
+  //1****Al darle click a una casilla, debe agregarse su id como string en la URL
+
   return (
     <div className="filters">
       <h4>Filtros</h4>

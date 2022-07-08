@@ -19,6 +19,17 @@ const Homescreen = () => {
 
   const { keyword, keyword2 } = useParams(); //idea: urilizar un arreglo de keywords
 
+  //Version de keywords en un arreglo:
+  const [keywords, setKeywords] = useState([]);
+
+  /* Logica para setear keywords con los query strings de la URL:
+  
+  
+    2) RESULTADO: keywords = ['hombre','sneakers','urbanas','adidas','fila','nike'] 
+
+    3) dispatch(listProducts(keywords))
+  */
+
   const { pageNumber } = useParams() || 1;
 
   //creando el rango de precio
@@ -32,11 +43,21 @@ const Homescreen = () => {
     dispatch(listProducts(keyword, keyword2, pageNumber, price)); //llamo a la funcion creadora de acciones la cual despacha la data del API
   }, [dispatch, keyword, keyword2, pageNumber, price]);
 
+  console.log('document.location: ', document.location.href) //Me devuelve la URL en un string
+
+
+  let params = (new URL(document.location.href)).searchParams;
+
+  let keywordURL = params.get('keyword');
+
+  console.log('keyword: ', keywordURL);
+
+
   return (
     <>
       <Meta />
       <NavMenu />
-      {!keyword ? (
+      {!keyword ? ( //Aqui tendria que ser algo como: !keywords[0]
         <ProductCarousel />
       ) : (
         <Link to="/" className="btn btn-light">
@@ -51,7 +72,7 @@ const Homescreen = () => {
       ) : (
         <Container fluid>
           <Row>
-            {keyword ? (
+            {keyword ? ( //Aqui tendria que ser algo como: !keywords[0]
               <>
                 <Col sm={12} lg={3} style={{ paddingLeft: '0' }}>
                   <AsideMenu
@@ -82,7 +103,7 @@ const Homescreen = () => {
               </Row>
             )}
           </Row>
-          <Paginate
+          <Paginate //4****Aqui le pasaria como props un arreglo de strings
             pages={pages}
             page={page}
             keyword={keyword ? keyword : ''}
