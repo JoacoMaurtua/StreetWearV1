@@ -3,20 +3,37 @@ import './AsideMenu.scss';
 import { Form } from 'react-bootstrap';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
+import { useParams } from 'react-router-dom';
 
 const { createSliderWithTooltip } = Slider;
 const Range = createSliderWithTooltip(Slider.Range);
 
-const AsideMenu = ({ price, setPrice }) => {//Aqui todo se pasara por props practicamente y se maperara de modo que quede dinamico
-   
-  //1****Al darle click a una casilla, debe agregarse su id como string en la URL
+const AsideMenu = ({ price, setPrice }) => {
+  //Aqui todo se pasara por props practicamente y se maperara de modo que quede dinamico
+
+  //1****Al darle click a diferentes casillas
+
+  const addStringsToUrl = (e) => {
+    e.preventDefault();
+    let searchParams = new URL(document.location).searchParams;
+    document.querySelector('input[type=checkbox]').forEach((checkBox) => {
+      if (checkBox.checked) {
+        searchParams.append('/', checkBox.value);
+      }
+    });
+    document.location.href = document.location.href.replace(
+      document.location.search,
+      '?' + searchParams.toString()
+    );
+  };
+
 
   return (
     <div className="filters">
       <h4>Filtros</h4>
       <div className="category fcontainer">
         <h5>Categoria</h5>
-        <Form>
+        <Form onSubmit={addStringsToUrl}>
           <Form.Check 
             type={'checkbox'} 
             id={'urbanas'} 
@@ -53,7 +70,7 @@ const AsideMenu = ({ price, setPrice }) => {//Aqui todo se pasara por props prac
 
       <div className="brand fcontainer">
         <h5>Marcas</h5>
-        <Form>
+        <Form onSubmit={addStringsToUrl}>
           <Form.Check type={'checkbox'} id={'Adidas'} label={'Adidas'} />
           <Form.Check type={'checkbox'} id={'DC'} label={'DC'} />
           <Form.Check type={'checkbox'} id={'Nike'} label={'Nike'} />
@@ -66,16 +83,16 @@ const AsideMenu = ({ price, setPrice }) => {//Aqui todo se pasara por props prac
           <Form.Check type={'checkbox'} id={'Fila'} label={'Fila'} />
           <Form.Check type={'checkbox'} id={'Puma'} label={'Puma'} />
           <Form.Check type={'checkbox'} id={'Jordan'} label={'Jordan'} />
+
+          <div className="filter-btn" style={{marginLeft:'0'}}>
+            <button type="submit">
+              Filtrar <i class="fas fa-filter"></i>
+            </button>
+          </div>
         </Form>
       </div>
 
       {/* AQUI IRA EL DIV DE LAS TALLAS DESPUES */}
-
-      <div className="filter-btn">
-        <button>
-          Filtrar <i class="fas fa-filter"></i>
-        </button>
-      </div>
     </div>
   );
 };
