@@ -43,12 +43,12 @@ const Homescreen = () => {
     dispatch(listProducts(keyword, keyword2, pageNumber, price)); //llamo a la funcion creadora de acciones la cual despacha la data del API
   }, [dispatch, keyword, keyword2, pageNumber, price]);
 
-  console.log('document.location: ', document.location) //Me devuelve la URL en un string
+ console.log('document.location: ', document.location.pathname) //Me devuelve la URL en un string
 
 
   let params = (new URL(document.location)).searchParams;
 
-  console.log('params: ', params);
+  //console.log('params: ', params); 
 
 
 

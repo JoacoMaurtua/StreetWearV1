@@ -16,7 +16,8 @@ const AsideMenu = ({ price, setPrice }) => {
   const addStringsToUrl = (e) => {
     e.preventDefault();
     let searchParams = new URL(document.location).searchParams;
-    document.querySelector('input[type=checkbox]').forEach((checkBox) => {
+    console.log('searchParams: ',searchParams);
+    Array.from(document.querySelector('input[type=checkbox]')).forEach((checkBox) => {
       if (checkBox.checked) {
         searchParams.append('/', checkBox.value);
       }
@@ -25,8 +26,9 @@ const AsideMenu = ({ price, setPrice }) => {
       document.location.search,
       '?' + searchParams.toString()
     );
-  };
 
+    
+  };
 
   return (
     <div className="filters">
