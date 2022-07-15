@@ -3,7 +3,7 @@ import './AsideMenu.scss';
 import { Form } from 'react-bootstrap';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 
 const { createSliderWithTooltip } = Slider;
 const Range = createSliderWithTooltip(Slider.Range);
@@ -13,21 +13,19 @@ const AsideMenu = ({ price, setPrice }) => {
 
   //1****Al darle click a diferentes casillas
 
+  const history = useHistory();
+
+  const params = new URLSearchParams(window.location.search);
+
+  console.log('params: ',params);
+
   const addStringsToUrl = (e) => {
     e.preventDefault();
-    let searchParams = new URL(document.location).searchParams;
-    console.log('searchParams: ',searchParams);
-    Array.from(document.querySelector('input[type=checkbox]')).forEach((checkBox) => {
-      if (checkBox.checked) {
-        searchParams.append('/', checkBox.value);
-      }
-    });
-    document.location.href = document.location.href.replace(
-      document.location.search,
-      '?' + searchParams.toString()
-    );
-
-    
+    history.push({
+      pathname: '/search',
+      search: '?checkbox=true'
+    })
+   
   };
 
   return (
