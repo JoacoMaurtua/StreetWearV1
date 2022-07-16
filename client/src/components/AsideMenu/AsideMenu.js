@@ -15,15 +15,7 @@ const AsideMenu = ({ price, setPrice }) => {
 
   const history = useHistory();
 
-  const params = new URLSearchParams(window.location.search); //devuelve el objeto URLSearchParams
-
-  console.log('params: ', params);
-
-  console.log(params.has('checkbox') ? params.get('checkbox') : ''); //debe dar true
-
-  const actualRoute = document.location.pathname;
-
-  console.log('actualRoute: ', actualRoute); //Me devuelve la URL en un string
+  const actualRoute = document.location.pathname; //Me devuelve la URL en un string
 
   //Funcion para encapsular valores de los checkboxes marcados en un arreglo
   const encapsularCheckboxes =()=>{
@@ -32,20 +24,22 @@ const AsideMenu = ({ price, setPrice }) => {
     inputs.forEach(input=>{
         checkboxArray.push(input.textContent);
     });
-    return checkboxArray;
+    return checkboxArray.join('/');
   }
 
+  //Funcion para agregar los valores del checkbox a la URL
   const addStringsToUrl = (e) => {
     e.preventDefault();
+    const secondRoute = encapsularCheckboxes();
     history.push({
       pathname: actualRoute,
-      search: '?checkbox=true', //aca debo agragrle dinamicamente los valores de las casillas
+      search: `${secondRoute}`, //aca debo agragrle dinamicamente los valores de las casillas
     });
   };
 
+  //NOTA: Paso 1 completado
   
-  console.log('Arreglo: ',encapsularCheckboxes());
-
+  
   return (
     <div className="filters">
       <h4>Filtros</h4>
