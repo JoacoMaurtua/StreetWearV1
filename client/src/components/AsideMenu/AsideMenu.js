@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './AsideMenu.scss';
 import { Form } from 'react-bootstrap';
 import Slider from 'rc-slider';
@@ -15,18 +15,36 @@ const AsideMenu = ({ price, setPrice }) => {
 
   const history = useHistory();
 
-  const params = new URLSearchParams(window.location.search);
+  const params = new URLSearchParams(window.location.search); //devuelve el objeto URLSearchParams
 
-  console.log('params: ',params);
+  console.log('params: ', params);
+
+  console.log(params.has('checkbox') ? params.get('checkbox') : ''); //debe dar true
+
+  const actualRoute = document.location.pathname;
+
+  console.log('actualRoute: ', actualRoute); //Me devuelve la URL en un string
+
+  //Funcion para encapsular valores de los checkboxes marcados en un arreglo
+  const encapsularCheckboxes =()=>{
+    var inputs = document.querySelectorAll('.checkbox-type input:checked+label');
+    var checkboxArray = [];
+    inputs.forEach(input=>{
+        checkboxArray.push(input.textContent);
+    });
+    return checkboxArray;
+  }
 
   const addStringsToUrl = (e) => {
     e.preventDefault();
     history.push({
-      pathname: '/search',
-      search: '?checkbox=true'
-    })
-   
+      pathname: actualRoute,
+      search: '?checkbox=true', //aca debo agragrle dinamicamente los valores de las casillas
+    });
   };
+
+  
+  console.log('Arreglo: ',encapsularCheckboxes());
 
   return (
     <div className="filters">
@@ -34,13 +52,15 @@ const AsideMenu = ({ price, setPrice }) => {
       <div className="category fcontainer">
         <h5>Categoria</h5>
         <Form onSubmit={addStringsToUrl}>
-          <Form.Check 
-            type={'checkbox'} 
-            id={'urbanas'} 
-            label={'Urbanas'} 
+          <Form.Check
+            className="checkbox-type"
+            type={'checkbox'}
+            id={'urbanas'}
+            label={'Urbanas'}
           />
 
           <Form.Check
+            className="checkbox-type"
             type={'checkbox'}
             id={'deportivas'}
             label={'Deportivas'}
@@ -71,20 +91,21 @@ const AsideMenu = ({ price, setPrice }) => {
       <div className="brand fcontainer">
         <h5>Marcas</h5>
         <Form onSubmit={addStringsToUrl}>
-          <Form.Check type={'checkbox'} id={'Adidas'} label={'Adidas'} />
-          <Form.Check type={'checkbox'} id={'DC'} label={'DC'} />
-          <Form.Check type={'checkbox'} id={'Nike'} label={'Nike'} />
-          <Form.Check type={'checkbox'} id={'Reebok'} label={'Reebok'} />
+          <Form.Check type={'checkbox'} id={'Adidas'} label={'Adidas'}  className="checkbox-type"/>
+          <Form.Check type={'checkbox'} id={'DC'} label={'DC'}  className="checkbox-type"/>
+          <Form.Check type={'checkbox'} id={'Nike'} label={'Nike'}  className="checkbox-type"/>
+          <Form.Check type={'checkbox'} id={'Reebok'} label={'Reebok'}  className="checkbox-type"/>
           <Form.Check
+           className="checkbox-type"
             type={'checkbox'}
             id={'NewBalance'}
             label={'NewBalance'}
           />
-          <Form.Check type={'checkbox'} id={'Fila'} label={'Fila'} />
-          <Form.Check type={'checkbox'} id={'Puma'} label={'Puma'} />
-          <Form.Check type={'checkbox'} id={'Jordan'} label={'Jordan'} />
+          <Form.Check type={'checkbox'} id={'Fila'} label={'Fila'}  className="checkbox-type"/>
+          <Form.Check type={'checkbox'} id={'Puma'} label={'Puma'}  className="checkbox-type"/>
+          <Form.Check type={'checkbox'} id={'Jordan'} label={'Jordan'}  className="checkbox-type"/>
 
-          <div className="filter-btn" style={{marginLeft:'0'}}>
+          <div className="filter-btn" style={{ marginLeft: '0' }}>
             <button type="submit">
               Filtrar <i class="fas fa-filter"></i>
             </button>
