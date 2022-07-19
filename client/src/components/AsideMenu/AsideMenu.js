@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './AsideMenu.scss';
 import { Form } from 'react-bootstrap';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
-import { useParams, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 const { createSliderWithTooltip } = Slider;
 const Range = createSliderWithTooltip(Slider.Range);
@@ -24,18 +24,33 @@ const AsideMenu = ({ price, setPrice }) => {
     inputs.forEach(input=>{
         checkboxArray.push(input.textContent);
     });
-    return checkboxArray.join('/');
-  }
+    return checkboxArray.join('-');
+  };
 
+  const secondRoute = encapsularCheckboxes();
   //Funcion para agregar los valores del checkbox a la URL
   const addStringsToUrl = (e) => {
-    e.preventDefault();
     const secondRoute = encapsularCheckboxes();
     history.push({
       pathname: actualRoute,
       search: `${secondRoute}`, //aca debo agragrle dinamicamente los valores de las casillas
     });
+    e.preventDefault();
   };
+
+  //Funcion para extraer los queryStrings en un arreglo de vuelta
+
+  const usingSplit = actualRoute.split('/').splice(2,2);
+
+  const usingSplit2 = secondRoute.split('/')
+
+  console.log('usingSplit?',usingSplit);
+
+  console.log('usingSplit2?',usingSplit2);
+
+  const arregloCompleto = usingSplit.concat(usingSplit2)
+
+  console.log('arregloCompleto', arregloCompleto )
 
   //NOTA: Paso 1 completado
   

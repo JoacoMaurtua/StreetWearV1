@@ -20,15 +20,17 @@ const Homescreen = () => {
   const { keyword, keyword2 } = useParams(); //idea: urilizar un arreglo de keywords
 
   //Version de keywords en un arreglo:
-  const [keywords, setKeywords] = useState([]);
-
+  
   /* Logica para setear keywords con los query strings de la URL:
+  */
+ 
   
-  
-    2) RESULTADO: keywords = ['hombre','sneakers','urbanas','adidas','fila','nike'] 
+   /* 2) RESULTADO: keywords = ['hombre','sneakers','urbanas','adidas','fila','nike'] 
 
     3) dispatch(listProducts(keywords))
   */
+
+  
 
   const { pageNumber } = useParams() || 1;
 
@@ -42,12 +44,6 @@ const Homescreen = () => {
     //activa las funcionalidades de las acciones
     dispatch(listProducts(keyword, keyword2, pageNumber, price)); //llamo a la funcion creadora de acciones la cual despacha la data del API
   }, [dispatch, keyword, keyword2, pageNumber, price]);
-
-
-
-  let params = (new URL(document.location)).searchParams;
-
-  //console.log('params: ', params); 
 
 
 
