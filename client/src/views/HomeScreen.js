@@ -17,20 +17,17 @@ import AsideMenu from '../components/AsideMenu/AsideMenu';
 const Homescreen = () => {
   const dispatch = useDispatch(); //devuelve una referencia al dispatch enviado por la accion al store
 
-  const { keyword, keyword2 } = useParams(); //idea: urilizar un arreglo de keywords
+  const { keyword, keyword2, subcategory, brand } = useParams(); //idea: urilizar un arreglo de keywords
 
   //Version de keywords en un arreglo:
   
   /* Logica para setear keywords con los query strings de la URL:
   */
- 
   
    /* 2) RESULTADO: keywords = ['hombre','sneakers','urbanas','adidas','fila','nike'] 
 
     3) dispatch(listProducts(keywords))
   */
-
-  
 
   const { pageNumber } = useParams() || 1;
 
@@ -42,9 +39,8 @@ const Homescreen = () => {
 
   useEffect(() => {
     //activa las funcionalidades de las acciones
-    dispatch(listProducts(keyword, keyword2, pageNumber, price)); //llamo a la funcion creadora de acciones la cual despacha la data del API
-  }, [dispatch, keyword, keyword2, pageNumber, price]);
-
+    dispatch(listProducts(keyword, keyword2, subcategory, brand, pageNumber, price)); //llamo a la funcion creadora de acciones la cual despacha la data del API
+  }, [dispatch, keyword, keyword2, pageNumber, subcategory, brand, price]);
 
 
 
@@ -52,7 +48,7 @@ const Homescreen = () => {
     <>
       <Meta />
       <NavMenu />
-      {!keyword ? ( //Aqui tendria que ser algo como: !keywords[0]
+      {!keyword ? ( 
         <ProductCarousel />
       ) : (
         <Link to="/" className="btn btn-light">
@@ -73,8 +69,7 @@ const Homescreen = () => {
                   <AsideMenu
                     price={price}
                     setPrice={setPrice}
-                    keyword={keyword}
-                    keyword2={keyword2}
+                  
                   />
                   {console.log('precio al dar click', price)}
                 </Col>
@@ -103,6 +98,8 @@ const Homescreen = () => {
             page={page}
             keyword={keyword ? keyword : ''}
             keyword2={keyword2 ? keyword2 : ''}
+            subcategory = {subcategory ? subcategory : ''}
+            brand = {brand ? brand : ''}
           />{' '}
           {/* puede ser que aqui implemente una funcionalidad */}
         </Container>

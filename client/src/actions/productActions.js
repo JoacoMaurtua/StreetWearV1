@@ -30,6 +30,8 @@ export const listProducts =
     //6****Aqui en lugar de strings le enviaria un arreglo de strings
     keyword = '',
     keyword2 = '',
+    subcategory = '',
+    brand = '',
     pageNumber = '',
     price /* = [1,3000] */
   ) =>
@@ -41,8 +43,7 @@ export const listProducts =
       const { data } = await axios.get(
         //7*****Aqui tendria que desestructurar el arreglo en strings que compongan la URL de alguna manera
 
-
-        `/api/products?keyword=${keyword}&keyword2=${keyword2}&pageNumber=${pageNumber}`
+        `/api/products?keyword=${keyword}&keyword2=${keyword2}&subcategory=${subcategory}&brand=${brand}&pageNumber=${pageNumber}`
       ); //&price[lte]=${price[1]}&price[gte]=${price[0]}
 
       dispatch({

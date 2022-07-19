@@ -73,9 +73,24 @@ const findProduct = asyncHandler(async (req, res) => {
       }
     : {};
 
+  const subcategory = req.query.subcategory
+    ? {
+        $or: [
+          
+          {
+            subcategory: {
+              $regex: req.query.subcategory,
+              $options: 'i',
+            },
+          },
+          
+        ],
+      }
+    : {};
 
-  const count = await Product.countDocuments({ $and: [keyword, keyword2] }); //Aqui deberia recibir un arreglo
-  const products = await Product.find({ $and: [keyword, keyword2] }) //Aqui deberia recibir un arreglo
+
+  const count = await Product.countDocuments({ $and: [keyword, keyword2, subcategory] }); //Aqui deberia recibir un arreglo
+  const products = await Product.find({ $and: [keyword, keyword2, subcategory] }) //Aqui deberia recibir un arreglo
     .limit(pageSize)
     .skip(pageSize * (page - 1));
 
